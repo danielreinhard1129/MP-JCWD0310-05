@@ -31,7 +31,6 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center justify-end gap-5">
-            {/* <h3>Create Event</h3> */}
             <Link href="/login">
               <h3 className="cursor-pointer">Login</h3>
             </Link>
@@ -40,6 +39,9 @@ const Navbar = () => {
             </Link>
             <Link href="/register">
               <h3 className="cursor-pointer">Register</h3>
+            </Link>
+            <Link href="/create-event" className='hidden md:block'>
+              <h3 className="cursor-pointer">Create</h3>
             </Link>
 
             <div className="md:hidden">
@@ -69,7 +71,9 @@ const Navbar = () => {
                       </li>
                       <li className='flex gap-5 items-center'>
                         <SquarePen/>
+                        <Link href="/create-event">
                         <p className='text-lg hover:text-[#d60b52]'>Create Event</p>
+                        </Link>
                       </li>
                       <li className='flex gap-5 items-center'>
                         <LogOut/>
