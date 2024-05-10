@@ -14,7 +14,7 @@ const useCreateEvent = () => {
         try {
             await axiosInstance.post('/events/create-event', payload);
 
-            // router.push('/login');
+            //router.push('/login');
         } catch (error) {
             console.log(error)
         }
