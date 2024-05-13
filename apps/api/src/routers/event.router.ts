@@ -1,6 +1,5 @@
-import { Router } from "express";
 import { EventController } from "@/controllers/event.controller";
-import { uploader } from "@/lib/uploader";
+import { Router } from "express";
 export class EventRouter {
     private router: Router;
     private eventController: EventController;
@@ -12,8 +11,10 @@ export class EventRouter {
     }
 
     private initializeRoutes(): void {
-        this.router.post('/create-event', this.eventController.createEventController)
-    }
+        this.router.get('/', this.eventController.getEventsController);
+        this.router.get('/:id', this.eventController.getEventController);
+      }
+
 
     getRouter(): Router {
         return this.router;

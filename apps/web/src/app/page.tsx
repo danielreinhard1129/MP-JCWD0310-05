@@ -1,34 +1,49 @@
 'use client';
 import { Footer } from '@/components/Footer';
 // import {Category} from "@/components/Category"
+import EventCard from '@/components/EventCard';
+import useGetEvents from '@/hooks/api/event/useGetEvents';
+import { appConfig } from '@/utils/config';
+import { useState } from 'react';
 import Category from './components/Category/page';
 import City from './components/City/page';
-import FilterEvent from './components/FilterEvent/page';
-import MoreEvents from './components/MoreEvents/page';
+// import { User } from '@/types/user.type';
 const Home = () => {
+  const [page, setPage] = useState<number>(1);
+  const { data: events, meta } = useGetEvents({
+     page,
+     take: 4, 
+    });
   return (
     <main className="h-screen flex flex-col">
-      {/* jumbotron start */}
-      <div className='md:container'>
-        <div className='h-36 md:h-96  border-2 rounded-lg m-4 flex flex-col text-center justify-center'>
+      {/* JUMBOTRON */}
+      <div className="md:container">
+        <div className="h-36 md:h-96 bg-blue-500  border-2 rounded-lg m-4 flex flex-col text-center justify-center">
           <h1 className="text-xl">halo</h1>
         </div>
       </div>
-      {/* jumbotron end */}
+
+      {/* FILTER BY */}
       <Category />
       <City />
 
-      <div className="py-6 md:container">
-        <h1 className="font-bold text-2xl mb-8 ml-[2rem]">
-          Event in Yogyakarta
-        </h1>
-        <div className="mb-8">
-          <FilterEvent />
-        </div>
-        <h1 className="font-bold text-2xl mb-8 ml-[2rem]">More events</h1>
-        <div className="mb-8">
-          <MoreEvents />
-        </div>
+      {/* CARDS */}
+      <div className="grid grid-cols-1 md:grid-cols-3  gap-8 my-10 container">
+        {events.map((event, index) => {
+          return (
+            <EventCard
+              key={index}
+              title={event.title}
+              author={event.user.username} 
+              category={event.category}
+              description={event.description}
+              imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
+              createdAt={new Date(event.createdAt)}
+              eventId={event.id}
+              price={event.price}
+            />
+          );
+        })}
       </div>
       <Footer />
     </main>
