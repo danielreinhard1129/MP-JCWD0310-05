@@ -1,7 +1,7 @@
 'use client';
 
-import { axiosInstance, axiosWithoutToken } from '@/lib/axios';
-import axios, { AxiosError } from 'axios';
+import { axiosWithoutToken } from '@/lib/axios';
+import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 

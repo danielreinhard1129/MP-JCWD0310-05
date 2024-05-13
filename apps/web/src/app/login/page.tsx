@@ -24,12 +24,12 @@ const Login = () => {
       },
     });
   return (
-    <main className="container mx-auto h-[90vh] px-4">
-      <div className="mt-40 flex justify-center">
-        <Card className="w-[450px]">
+    <main className="absolute top-0 left-0 min-w-full flex min-h-screen pt-14 px-4 bg-mythemes-whitesmoke">
+      <div className="justify-center m-auto">
+        <Card className="min-w-[400px] max-w-[500px]">
           <CardHeader>
-            <CardTitle className="text-center text-3xl text-primary">
-              Login
+            <CardTitle className="text-center text-3xl">
+              Eventura
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -57,37 +57,28 @@ const Login = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-                <div className='flex justify-between '>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-xs leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Remember Me
-                    </label>
-                  </div>
-                  <p
-                    className="cursor-pointer text-end text-xs"
-                    onClick={() => router.push('/forgot-password')}
-                  >
-                    Forgot Password ?
-                  </p>
-                </div>
+
+                <p
+                  className="cursor-pointer text-end text-sm font-semibold text-mythemes-scarletgum hover:text-mythemes-purple"
+                  onClick={() => router.push('/forgot-password')}
+                >
+                  Forgot Password?
+                </p>
+
               </div>
-              <Button className="mt-6 w-full" type="submit">
+              <Button className="mt-6 w-full bg-mythemes-scarletgum" type="submit">
                 SIGN IN
               </Button>
               <div className='flex justify-center gap-1 py-4'>
                 <p
-                  className="text-center text-xs"
+                  className="text-center text-sm"
                 >
-                  Don't have an account?                   
+                  Don't have an account?
                 </p>
-                <p 
-                className="cursor-pointer font-medium text-purple-700 text-xs"
-                    onClick={() => router.push('/register')}>
-                      Sign up
+                <p
+                  className="cursor-pointer text-mythemes-scarletgum font-semibold text-sm hover:text-mythemes-purple"
+                  onClick={() => router.push('/register')}>
+                  Sign up
                 </p>
               </div>
             </form>

@@ -33,7 +33,7 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div className="flex flex-col space-y-1.5">
-      <Label htmlFor={name} className={isError ? 'text-red-500' : 'text-black'}>
+      <Label htmlFor={name} className={isError ? 'text-mythemes-darkpink' : 'text-mythemes-scarletgum font-semibold'}>
         {label}
       </Label>
       <Input
@@ -43,9 +43,9 @@ const FormInput: React.FC<FormInputProps> = ({
         onBlur={handleBlur}
         onChange={handleChange}
         value={value}
-        className={isError ? 'border-red-500' : ''}
+        className={isError ? 'border-mythemes-darkpink' : 'border-mythemes-scarletgum font-semibold'}
       />
-      {isError ? <div className="text-xs text-red-500">{error}</div> : null}
+      {isError ? <div className="text-xs text-mythemes-darkpink">{error}</div> : null}
     </div>
   );
 };
