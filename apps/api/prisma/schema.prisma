@@ -22,12 +22,12 @@ model Sample {
 
 model User {
   id        Int      @id @default(autoincrement())
-  fullName  String
+  username  String
   email     String
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Event      Event[]
+  Event     Event[]
 
   @@map("users")
 }
@@ -38,9 +38,14 @@ model Event {
   description String    @db.LongText()
   category    String
   content     String    @db.LongText()
+  venue       String    @default("")
+  city        String    @default("")
+  price       Int?
   user        User      @relation(fields: [userId], references: [id])
   userId      Int
   thumbnail   String
+  startDate   DateTime  @db.DateTime()
+  endDate     DateTime  @db.DateTime()
   deletedAt   DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

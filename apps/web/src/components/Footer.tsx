@@ -25,14 +25,6 @@ export const Footer = () => {
             <li className="">
               <a
                 href="#"
-                className="text-white py-2 px-2 md:px-4 bg-yellow-500 rounded hover:bg-yellow-600 transition duration-300 ease-in-out"
-              >
-                Volunteer
-              </a>
-            </li>
-            <li className="">
-              <a
-                href="#"
                 className="text-white py-2 px-2 md:px-4 bg-red-500 rounded hover:bg-red-600 transition duration-300 ease-in-out"
               >
                 Contact
