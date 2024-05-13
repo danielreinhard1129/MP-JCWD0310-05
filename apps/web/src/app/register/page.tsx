@@ -6,9 +6,9 @@ import React from 'react'
 
 const Register = () => {
     return (
-        <main className="container mx-auto h-[90vh] px-4">
-            <div className="mt-40 flex justify-center">
-                <Card>
+        <main className="absolute top-0 left-0 min-w-full flex min-h-screen pt-14 px-4 bg-mythemes-whitesmoke">
+      <div className="justify-center m-auto">
+        <Card className="min-w-[400px] max-w-[500px]">
                     <CardHeader>
                         <CardTitle className="text-center text-3xl text-primary">
                             Eventura

@@ -16,8 +16,8 @@ import { Command, CommandInput } from './ui/command';
 import { Separator } from './ui/separator';
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-50  bg-[#d60b52]">
-      <div className="container mx-auto p-4 ">
+    <nav className="relative z-40 bg-[#d60b52]">
+      <div className="sticky top-0 z-50 container mx-auto ">
         <div className="flex items-center justify-between py-2 text-white">
           <Link href="/">
             <h1 className="font-bold text-xl cursor-pointer">Eventura</h1>

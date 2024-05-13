@@ -25,9 +25,9 @@ const RegisterOrganizer = () => {
     });
 
     return (
-        <main className="container mx-auto h-[90vh] px-4">
-            <div className="mt-40 flex justify-center">
-                <Card className="w-[450px]">
+        <main className="absolute top-0 left-0 min-w-full flex min-h-screen pt-14 px-4 bg-mythemes-whitesmoke">
+            <div className="justify-center m-auto">
+                <Card className="min-w-[400px] max-w-[500px]">
                     <CardHeader>
                         <CardTitle className="text-center text-3xl text-primary">
                             Eventura
@@ -68,7 +68,7 @@ const RegisterOrganizer = () => {
                                     isError={!!formik.touched.password && !!formik.errors.password}
                                     handleChange={formik.handleChange}
                                     handleBlur={formik.handleBlur}
-                                />                              
+                                />
                             </div>
                             <Button className="mt-6 w-full" type="submit">
                                 SIGN UP
@@ -77,7 +77,7 @@ const RegisterOrganizer = () => {
                                 <p
                                     className="text-center text-xs"
                                 >
-                                    Already have an account?  
+                                    Already have an account?
                                 </p>
                                 <p
                                     className="cursor-pointer font-medium text-purple-700 text-xs"
