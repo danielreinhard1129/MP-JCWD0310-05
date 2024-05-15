@@ -4,6 +4,7 @@ import { resetPasswordService } from '@/services/auth/reset-password.service';
 import { loginService } from '@/services/auth/login.service';
 import { registerService } from '@/services/auth/register.service';
 import { NextFunction, Request, Response } from 'express';
+import { KeepLoginService } from '@/services/auth/keep-login.service';
 
 export class AuthController {
   async registerController(req: Request, res: Response, next: NextFunction) {

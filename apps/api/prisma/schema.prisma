@@ -23,7 +23,7 @@ model User {
   coupon        Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  Event         Event[]  
+  Event         Event[]
 
   @@map("users")
 }
@@ -37,6 +37,7 @@ model Event {
   venue       String    @default("")
   city        String    @default("")
   price       Int?
+  ticketLimit Int   @default(0)
   user        User      @relation(fields: [userId], references: [id])
   userId      Int
   thumbnail   String
