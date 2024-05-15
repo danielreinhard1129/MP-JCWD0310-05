@@ -1,8 +1,7 @@
-import { axiosInstance, axiosWithoutToken } from '@/lib/axios';
+import { axiosInstance } from '@/lib/axios';
+import { useAppDispatch } from '@/redux/hooks';
 import { loginAction } from '@/redux/slices/userSlice';
 import { User } from '@/types/user.type';
-import { AxiosError } from 'axios';
-import { useDispatch } from 'react-redux';
 
 interface KeepLoginResponse {
   message: string;
@@ -10,7 +9,7 @@ interface KeepLoginResponse {
 }
 
 const useKeepLogin = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const keepLogin = async () => {
     try {

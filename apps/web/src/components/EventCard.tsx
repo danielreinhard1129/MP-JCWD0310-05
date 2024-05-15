@@ -13,8 +13,8 @@ interface EventCardProps {
   price: number;
   imageURL: string;
   startDate: Date;
-  endDate: Date;
-  createdAt: Date;
+  //endDate: Date;
+  //createdAt: Date;
   eventId: number;
 }
 
@@ -22,9 +22,7 @@ const EventCard: FC<EventCardProps> = ({
   title,
   author,
   category,
-  createdAt,
   startDate,
-  endDate,
   price,
   description,
   imageURL,
@@ -39,9 +37,9 @@ const EventCard: FC<EventCardProps> = ({
       };
   return (
     <Link href={`/${eventId}`}>
-      <Card>
+      <Card className='flex flex-col min-w-[220px]'>
         <CardHeader>
-          <div className="relative h-[220px] w-full overflow-hidden rounded-md">
+          <div className="relative h-[100px] w-full overflow-hidden rounded-md">
             <Image
               src={imageURL}
               alt="thumbnail"
@@ -56,10 +54,11 @@ const EventCard: FC<EventCardProps> = ({
           </Badge>
           <h2 className="line-clamp-2 text-lg font-semibold">{title}</h2>
           <p className="text-sm font-light italic">
-            {format(createdAt, 'dd MMMM yyyy')} 
+            {format(startDate, 'dd MMMM yyyy')} 
              
           </p>
           <p className="line-clamp-3">{description}</p>
+          <p className="line-clamp-3">{author}</p>
           <h3>{formattedPrice(price)}</h3>
         </CardContent>
       </Card>

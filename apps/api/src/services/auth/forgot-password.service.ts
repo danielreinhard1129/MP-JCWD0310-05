@@ -10,7 +10,7 @@ export const forgotPasswordService = async (email: string) => {
     });
 
     if (!user) {
-      throw new Error('invalid email address');
+      throw new Error('Invalid Email Address!');
     }
 
     const token = sign({ id: user.id }, JWT_SECRET, {

@@ -1,9 +1,10 @@
-import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
-import './globals.css';
-import Navbar from "@/components/Navbar"
-import { Footer } from '@/components/Footer';
+import Navbar from "@/components/Navbar";
 import StoreProvider from '@/providers/StoreProvider';
+import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
+import './globals.css';
+import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/providers/AuthProvider";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -28,8 +29,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <StoreProvider>
-          <Navbar />
-          {children}
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Toaster />
+          </AuthProvider>
         </StoreProvider>
       </body>
     </html>

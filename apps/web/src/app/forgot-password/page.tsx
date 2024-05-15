@@ -46,9 +46,9 @@ const ForgotPassword = () => {
                   handleBlur={handleBlur}
                 />
               </div>
-              <Button className="mt-6 w-full" disabled={isLoading}>
+              <Button className="mt-6 w-full"  type="submit" disabled={isLoading}>
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Forgot Password
+                {isLoading ? 'Loading' : 'Forgot Password'}                
               </Button>
               <div className='flex justify-center gap-1 py-4'>
                 <p

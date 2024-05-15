@@ -1,13 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useFormik } from 'formik';
 import FormInput from '@/components/FormInput';
 import { Button } from '@/components/ui/button';
-import { validationSchema } from './validationSchema';
+import { AuthCard, AuthCardContent, AuthCardHeader, AuthCardTitle, Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import useLogin from '@/hooks/api/auth/useLogin';
+import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
-import { Checkbox } from '@/components/ui/checkbox';
+import { validationSchema } from './validationSchema';
 
 const Login = () => {
   const { login } = useLogin();
@@ -25,14 +24,13 @@ const Login = () => {
     });
   return (
     <main className="absolute top-0 left-0 min-w-full flex min-h-screen pt-14 px-4 bg-mythemes-whitesmoke">
-      <div className="justify-center m-auto">
-        <Card className="min-w-[400px] max-w-[500px]">
-          <CardHeader>
-            <CardTitle className="text-center text-3xl">
+        <AuthCard>
+          <AuthCardHeader>
+            <AuthCardTitle>
               Eventura
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+            </AuthCardTitle>
+          </AuthCardHeader>
+          <AuthCardContent>
             <form onSubmit={handleSubmit}>
               <div className="grid w-full items-center gap-4">
                 <FormInput
@@ -82,9 +80,9 @@ const Login = () => {
                 </p>
               </div>
             </form>
-          </CardContent>
-        </Card>
-      </div>
+          </AuthCardContent>
+        </AuthCard>
+      
     </main>
   );
 };

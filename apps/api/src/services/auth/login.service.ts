@@ -13,13 +13,13 @@ export const loginService = async (body: Pick<User, 'email' | 'password'>) => {
     });
 
     if (!user) {
-      throw new Error('invalid email address');
+      throw new Error('Invalid Email Address!');
     }
 
     const isPasswordValid = await comparePassword(password, user.password);
 
     if (!isPasswordValid) {
-      throw new Error('incorrect password');
+      throw new Error('Incorrect Password!');
     }
 
     const token = sign({ id: user.id }, JWT_SECRET, {

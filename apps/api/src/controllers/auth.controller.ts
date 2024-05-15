@@ -1,4 +1,4 @@
-// import { KeepLoginService } from '@/services/auth/keep-login.service';
+import { KeepLoginService } from '@/services/auth/keep-login.service';
 import { forgotPasswordService } from '@/services/auth/forgot-password.service';
 import { resetPasswordService } from '@/services/auth/reset-password.service';
 import { loginService } from '@/services/auth/login.service';
@@ -24,17 +24,17 @@ export class AuthController {
     }
   }
 
-  // async keepLoginController(req: Request, res: Response, next: NextFunction) {
-  //   try {
-  //     const userId = Number(req.body.user.id);
+  async keepLoginController(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId = Number(req.body.user.id);
 
-  //     const result = await KeepLoginService(userId);
+      const result = await KeepLoginService(userId);
 
-  //     return res.status(200).send(result);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
+      return res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
 
   async forgotPasswordController(
     req: Request,

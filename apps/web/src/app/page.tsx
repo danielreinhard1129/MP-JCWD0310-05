@@ -36,11 +36,11 @@ const Home = () => {
               title={event.title}
               author={event.user.username} 
               category={event.category}
+              startDate={event.startDate}
+              price={event.price}
               description={event.description}
               imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
-              createdAt={new Date(event.createdAt)}
               eventId={event.id}
-              price={event.price}
             />
           );
         })}

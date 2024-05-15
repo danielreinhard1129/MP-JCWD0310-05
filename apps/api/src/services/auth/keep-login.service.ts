@@ -6,7 +6,7 @@ export const KeepLoginService = async (id: number) => {
       where: { id },
     });
     if (!user) {
-      throw new Error('invalid user id');
+      throw new Error('Invalid User Id!');
     }
     return {
       message: 'keep login success',
