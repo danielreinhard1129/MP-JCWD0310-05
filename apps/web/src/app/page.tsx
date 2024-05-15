@@ -38,6 +38,8 @@ const Home = () => {
               category={event.category}
               description={event.description}
               imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
+              startDate={event.startDate}
+              endDate={event.endDate}
               createdAt={new Date(event.createdAt)}
               eventId={event.id}
               price={event.price}

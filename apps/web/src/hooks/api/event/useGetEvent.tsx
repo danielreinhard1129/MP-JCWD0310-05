@@ -12,8 +12,6 @@ const useGetEvent = (id: number) => {
     try {
       const { data } = await axiosInstance.get<Event>(`/events/${id}`);
       setData(data);
-      // console.log(data);
-      
     } catch (error) {
       if (error instanceof AxiosError) {
         // TODO : replace console.log with toast

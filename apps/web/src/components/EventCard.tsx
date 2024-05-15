@@ -31,7 +31,8 @@ const EventCard: FC<EventCardProps> = ({
   eventId,
 }) => {
     const formattedPrice = (price: number): string => {
-        return new Intl.NumberFormat('id-ID', {
+        return price === 0 ? 'Free entrance' :
+        new Intl.NumberFormat('id-ID', {
           style: 'currency',
           currency: 'IDR',
           minimumFractionDigits: 0
@@ -45,7 +46,7 @@ const EventCard: FC<EventCardProps> = ({
             <Image
               src={imageURL}
               alt="thumbnail"
-              className="object-cove"
+              className="object-cover"
               fill
             />
           </div>
@@ -60,7 +61,7 @@ const EventCard: FC<EventCardProps> = ({
              
           </p>
           <p className="line-clamp-3">{description}</p>
-          <h3>{formattedPrice(price)}</h3>
+          <h3 className='font-semibold'>{formattedPrice(price)}</h3>
         </CardContent>
       </Card>
     </Link>

@@ -23,13 +23,16 @@ import { Button } from '@/components/ui/button';
 
 const EventDetail = ({ params }: { params: { id: string } }) => {
   const formattedPrice = (price: number): string => {
-    return new Intl.NumberFormat('id-ID', {
+    return price === 0 ? 'Free entrance' :
+    new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
       minimumFractionDigits: 0
     }).format(price);
   };
-  const { event, isLoading } = useGetEvent(Number(params.id));
+  const {  isLoading ,event } = useGetEvent(Number(params.id));
+ 
+  
 
   if (isLoading) {
     return (
@@ -42,6 +45,7 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
   if (!event) {
     return notFound();
   }
+ 
   return (
     <main className="">
       <section className="my-4 container">
@@ -56,13 +60,14 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
           </div>
 
           <div>
-            <Card>
+            <Card>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
               <CardHeader>
                 <CardTitle>
                   <h1 className="md:text-3xl text-2xl font-semibold">
                     {event.title}
                   </h1>
                 </CardTitle>
+                
                 <div className="space-y-1.5">
                   <Badge variant="outline" className="rounded-sm bg-green-100">
                     {event.category}
