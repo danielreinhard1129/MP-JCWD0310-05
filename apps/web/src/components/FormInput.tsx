@@ -10,8 +10,8 @@ import { Label } from './ui/label';
 interface FormInputProps {
   name: string;
   label: string;
-  type: string | HTMLInputTypeAttribute;
-  value: string;
+  type: string ;
+  value: string | number | Date;
   placeholder: string;
   isError: boolean;
   error: string | undefined;
@@ -31,6 +31,9 @@ const FormInput: React.FC<FormInputProps> = ({
   handleChange,
   handleBlur,
 }) => {
+  const adjustedValue = value instanceof Date ? value.toISOString().split('T')[0] : value;
+
+  const adjustedPlaceholder = type === 'date' ? 'YYYY-MM-DD' : type === 'time' ? 'HH:MM' : placeholder;
   return (
     <div className="flex flex-col space-y-1.5">
       <Label htmlFor={name} className={isError ? 'text-mythemes-darkpink' : 'text-mythemes-scarletgum font-semibold'}>
@@ -39,10 +42,10 @@ const FormInput: React.FC<FormInputProps> = ({
       <Input
         name={name}
         type={type}
-        placeholder={placeholder}
+        placeholder={adjustedPlaceholder}
         onBlur={handleBlur}
         onChange={handleChange}
-        value={value}
+        value={adjustedValue}
         className={isError ? 'border-mythemes-darkpink' : 'border-mythemes-scarletgum font-semibold'}
       />
       {isError ? <div className="text-xs text-mythemes-darkpink">{error}</div> : null}

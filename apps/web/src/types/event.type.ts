@@ -13,6 +13,7 @@ export interface Event {
   endDate: Date;
   price: number;
   userId: number;
+  ticketLimit: number;
   createdAt: Date;
   updateAt: Date;
   deletedAt: Date | null;
@@ -20,4 +21,18 @@ export interface Event {
   user: User;
 }
 
+export interface IFormCreateEvent {
+  title: string;
+  category: string;
+  content: string;
+  thumbnail: File[];
+  description: string;
+  startDate: string;
+  endDate: string;
+  city: string;
+  venue: string;
+  price: number;
+  userId?: number;
+  ticketLimit: number;
+}
 

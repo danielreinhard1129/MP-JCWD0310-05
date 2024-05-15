@@ -16,7 +16,7 @@ const useRegister = () => {
       router.push('/login');
     } catch (error) {
       if (error instanceof AxiosError) {
-        alert(JSON.stringify(error.message));
+        alert(JSON.stringify(error?.response?.data));
       }
     }
   };
