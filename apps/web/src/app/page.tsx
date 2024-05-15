@@ -36,13 +36,13 @@ const Home = () => {
               title={event.title}
               author={event.user.username} 
               category={event.category}
+              startDate={event.startDate}
+              price={event.price}
               description={event.description}
               imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
-              startDate={event.startDate}
-              endDate={event.endDate}
-              createdAt={new Date(event.createdAt)}
+              endDate={event.endDate}       
+
               eventId={event.id}
-              price={event.price}
             />
           );
         })}

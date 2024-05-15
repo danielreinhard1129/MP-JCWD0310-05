@@ -12,7 +12,7 @@ export const registerService = async (
     });
 
     if (existingUser) {
-      throw new Error('Email already exist');
+      throw new Error('An Account With That Email Already Exists!');
     }
 
     const hashedPassword = await hashPassword(password);
@@ -23,7 +23,7 @@ export const registerService = async (
       select: { id: true },
     })
     if (!existingRefferal && referral != '') {
-      throw new Error('Invalid Referral Code')
+      throw new Error('Invalid Referral Code!')
     }
 
     //update reffered point

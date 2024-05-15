@@ -5,7 +5,8 @@ const initialState : User = {
   id: 0,
   username: '',
   email: '',
-  referred: '',
+  referral: '',
+  role: '',
 };
 
 export const userSlice = createSlice({

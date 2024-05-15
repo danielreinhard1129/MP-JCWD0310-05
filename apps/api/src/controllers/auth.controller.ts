@@ -1,4 +1,4 @@
-// import { KeepLoginService } from '@/services/auth/keep-login.service';
+import { KeepLoginService } from '@/services/auth/keep-login.service';
 import { forgotPasswordService } from '@/services/auth/forgot-password.service';
 import { resetPasswordService } from '@/services/auth/reset-password.service';
 import { loginService } from '@/services/auth/login.service';

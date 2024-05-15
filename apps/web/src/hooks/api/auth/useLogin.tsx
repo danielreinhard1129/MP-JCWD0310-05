@@ -1,12 +1,14 @@
 'use client';
 
+
+import { toast } from '@/components/ui/use-toast';
 import { axiosInstance } from '@/lib/axios';
+import { cn } from '@/lib/utils';
 import { useAppDispatch } from '@/redux/hooks';
 import { loginAction } from '@/redux/slices/userSlice';
 import { User } from '@/types/user.type';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-
 interface LoginArgs extends Omit<User, 'id' | 'username' | 'referred' > {
   password: string;
 }
@@ -32,8 +34,13 @@ const useLogin = () => {
     
     } catch (error) {
       if (error instanceof AxiosError) {
-        // FIXME: chane alert to toast
-        alert(error?.response?.data);
+        toast({
+          className: cn(
+            'top-0 right-0 flex fixed md:max-w-[420px] md:top-16 md:right-4 border-mythemes-darkpink text-mythemes-darkpink'
+          ),
+          variant: 'default',
+          title: error?.response?.data,
+        })
       }
     }
   };

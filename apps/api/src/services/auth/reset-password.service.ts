@@ -11,7 +11,7 @@ export const resetPasswordService = async (
     });
 
     if (!user) {
-      throw new Error('account not found');
+      throw new Error('Account not Found!');
     }
 
     const hashedPassword = await hashPassword(password);

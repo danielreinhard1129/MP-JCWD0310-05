@@ -24,11 +24,11 @@ export class AuthRouter {
       verifyToken,
       this.authController.resetPasswordController,
     );
-    // this.router.get(
-    //   '/keep-login',
-    //   verifyToken,
-    //   this.authController.keepLoginController,
-    // );
+    this.router.get(
+      '/keep-login',
+      verifyToken,
+      this.authController.keepLoginController,
+    );
   }
 
   getRouter(): Router {
