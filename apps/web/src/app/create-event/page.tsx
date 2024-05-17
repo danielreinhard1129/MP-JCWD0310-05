@@ -4,7 +4,6 @@ import Dropzone from '@/components/Dropzone';
 import FormInput from '@/components/FormInput';
 import FormTextArea from '@/components/FormTextArea';
 import PreviewImages from '@/components/PreviewImages';
-import RichTextEditor from '@/components/RichTextEditor';
 import { Button } from '@/components/ui/button';
 import AuthGuard from '@/hoc/AuthGuard';
 import useCreateEvent from '@/hooks/api/event/useCreateEvent';
@@ -12,12 +11,12 @@ import { useAppSelector } from '@/redux/hooks';
 import { IFormCreateEvent } from '@/types/event.type';
 import { useFormik } from 'formik';
 import { validationSchema } from './validationSchema';
-import { Separator } from '@/components/ui/separator';
 
 // import { DateInput } from '@/components/DateInput';
 const CreateEvent = () => {
   const { createEvent } = useCreateEvent();
   const { id } = useAppSelector((state) => state.user);
+  
   // console.log('gdhdhdhdghdg', id);
 
   const {
@@ -49,6 +48,7 @@ const CreateEvent = () => {
     },
     enableReinitialize: true,
   });
+
   return (
     <main className="">
       <form onSubmit={handleSubmit}>
@@ -89,7 +89,7 @@ const CreateEvent = () => {
               handleChange={handleChange}
               handleBlur={handleBlur}
             />
-            
+
             <FormTextArea
               name="content"
               label="Content"

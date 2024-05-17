@@ -7,19 +7,20 @@ import { appConfig } from '@/utils/config';
 import { useState } from 'react';
 import Category from './components/Category/page';
 import City from './components/City/page';
+import Image from 'next/image';
 // import { User } from '@/types/user.type';
 const Home = () => {
   const [page, setPage] = useState<number>(1);
   const { data: events, meta } = useGetEvents({
-     page,
-     take: 4, 
-    });
+    page,
+    take: 4,
+  });
   return (
     <main className="h-screen flex flex-col">
       {/* JUMBOTRON */}
       <div className="md:container">
-        <div className="h-36 md:h-96 bg-blue-500  border-2 rounded-lg m-4 flex flex-col text-center justify-center">
-          <h1 className="text-xl">halo</h1>
+        <div className="relative h-36 md:h-96 rounded-lg my-4 flex flex-col text-center justify-center">
+          <Image src="/jumbo.avif" alt="Hero Pictures" fill className="object-cover rounded-lg" loading="lazy" />
         </div>
       </div>
 
@@ -34,14 +35,13 @@ const Home = () => {
             <EventCard
               key={index}
               title={event.title}
-              author={event.user.username} 
+              author={event.user.username}
               category={event.category}
               startDate={event.startDate}
               price={event.price}
               description={event.description}
               imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
-              endDate={event.endDate}       
-
+              endDate={event.endDate}
               eventId={event.id}
             />
           );
