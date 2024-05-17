@@ -61,8 +61,8 @@ model Transaction {
   user       User     @relation(fields: [userId], references: [id])
   eventId    Int
   event      Event    @relation(fields: [eventId], references: [id])
-  createdAt  DateTime @default(now())
-  updateAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
 
-   @@map("transactions")
+  @@map("transactions")
 }
