@@ -40,7 +40,7 @@ const Home = () => {
               price={event.price}
               description={event.description}
               imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
-              endDate={event.endDate}       
+              // endDate={event.endDate}       
 
               eventId={event.id}
             />

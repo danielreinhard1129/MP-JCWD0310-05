@@ -19,6 +19,8 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import SkeletonEventDetail from './components/SkeletonEventDetail';
 import { Button } from '@/components/ui/button';
+import TransactionDialog from '@/components/TransactionDialog';
+
 
 
 const EventDetail = ({ params }: { params: { id: string } }) => {
@@ -45,6 +47,8 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
   if (!event) {
     return notFound();
   }
+
+  const priceString = formattedPrice(event.price);
  
   return (
     <main className="">
@@ -59,7 +63,8 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
             />
           </div>
 
-          <div>
+          <div className="md:sticky md:top-4 md:self-start">
+            {/* EVENT OVERVIEW CARD */}
             <Card>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
               <CardHeader>
                 <CardTitle>
@@ -100,19 +105,24 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
                 </p>
               </CardFooter>
             </Card>
-
+            
+            {/* BUY TICKET CARD */}
             <Card className='mt-4 pt-5'>
               <CardContent className='flex justify-between items-center'>
                 <h2 className=''>Buy ticket</h2>
-                <Button>{formattedPrice(event.price)}</Button>
+               <TransactionDialog 
+               price={event.price}
+               ticketLimit={event.ticketLimit}
+               formattedPrice={priceString}/>
+                
               </CardContent>
             </Card>
           </div>
 
 
-        </div>
-        <div className="mt-4">
+        <div className="mt-4 md:col-span-2">
           <Markdown content={event.content} />
+        </div>
         </div>
       </section>
 
