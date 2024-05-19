@@ -14,7 +14,7 @@ export class EventController {
 
       const result = await createEventService(req.body, files[0]);
       // console.log(result);
-      
+
       return res.status(201).send(result);
     } catch (error) {
       next(error);
@@ -47,4 +47,5 @@ export class EventController {
       next(error);
     }
   }
+
 }

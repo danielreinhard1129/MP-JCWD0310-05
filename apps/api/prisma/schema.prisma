@@ -25,6 +25,7 @@ model User {
   updatedAt     DateTime      @updatedAt
   Event         Event[]
   Transaction   Transaction[]
+  Review        Review[]
 
   @@map("users")
 }
@@ -33,11 +34,12 @@ model Event {
   id          Int           @id @default(autoincrement())
   title       String        @unique
   description String        @db.LongText()
+  booked      Int           @default(0)
   category    String
   content     String        @db.LongText()
   venue       String        @default("")
   city        String        @default("")
-  price       Int?
+  price       Int?          @default(0)
   ticketLimit Int           @default(0)
   user        User          @relation(fields: [userId], references: [id])
   userId      Int
@@ -48,6 +50,7 @@ model Event {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   Transaction Transaction[]
+  Review      Review[]
 
   @@map("events")
 }
@@ -58,11 +61,25 @@ model Transaction {
   totalPrice Int
   expiresAt  DateTime
   userId     Int
+  status     String   @default("Waiting for Payment")
   user       User     @relation(fields: [userId], references: [id])
   eventId    Int
   event      Event    @relation(fields: [eventId], references: [id])
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  updateAt   DateTime @updatedAt
 
   @@map("transactions")
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  event     Event    @relation(fields: [eventId], references: [id])
+  userId    Int
+  eventId   Int
+  // rating    Int?
+  comment   String
+  createdAt DateTime @default(now())
+
+  @@map("reviews")
 }

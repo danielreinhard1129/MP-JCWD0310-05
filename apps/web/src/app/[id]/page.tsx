@@ -2,6 +2,7 @@
 
 import { Footer } from '@/components/Footer';
 import Markdown from '@/components/Markdown';
+import TransactionDialog from '@/components/TransactionDialog';
 import { Badge } from '@/components/ui/badge';
 import {
   Card,
@@ -18,23 +19,21 @@ import { CalendarDays, Clock, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import SkeletonEventDetail from './components/SkeletonEventDetail';
-import { Button } from '@/components/ui/button';
-import TransactionDialog from '@/components/TransactionDialog';
-
-
+import CreateReviewDialog from './components/CreateReviewDialog';
+// import CreateReviewDialog from '@/components/CreateReviewDialog';
 
 const EventDetail = ({ params }: { params: { id: string } }) => {
   const formattedPrice = (price: number): string => {
-    return price === 0 ? 'Free entrance' :
-    new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
-    }).format(price);
+    return price === 0
+      ? 'Free entrance'
+      : new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR',
+          minimumFractionDigits: 0,
+        }).format(price);
   };
-  const {  isLoading ,event } = useGetEvent(Number(params.id));
- 
-  
+  const { isLoading, event } = useGetEvent(Number(params.id));
+  // const { review } = useGetReview(Number(params.id));
 
   if (isLoading) {
     return (
@@ -48,8 +47,12 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
     return notFound();
   }
 
+  // if (!review) {
+  //   return notFound();
+  // }
+
   const priceString = formattedPrice(event.price);
- 
+
   return (
     <main className="">
       <section className="my-4 container">
@@ -65,14 +68,14 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
 
           <div className="md:sticky md:top-4 md:self-start">
             {/* EVENT OVERVIEW CARD */}
-            <Card>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            <Card>
               <CardHeader>
                 <CardTitle>
                   <h1 className="md:text-3xl text-2xl font-semibold">
                     {event.title}
                   </h1>
                 </CardTitle>
-                
+
                 <div className="space-y-1.5">
                   <Badge variant="outline" className="rounded-sm bg-green-100">
                     {event.category}
@@ -105,24 +108,24 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
                 </p>
               </CardFooter>
             </Card>
-            
+
             {/* BUY TICKET CARD */}
-            <Card className='mt-4 pt-5'>
-              <CardContent className='flex justify-between items-center'>
-                <h2 className=''>Buy ticket</h2>
-               <TransactionDialog 
-               price={event.price}
-               ticketLimit={event.ticketLimit}
-               formattedPrice={priceString}/>
-                
+            <Card className="mt-4 pt-5">
+              <CardContent className="flex justify-between items-center">
+                <h2 className="">Buy ticket</h2>
+                <TransactionDialog
+                  price={event.price}
+                  ticketLimit={event.ticketLimit}
+                  formattedPrice={priceString}
+                />
+                <CreateReviewDialog/>
               </CardContent>
             </Card>
           </div>
 
-
-        <div className="mt-4 md:col-span-2">
-          <Markdown content={event.content} />
-        </div>
+          <div className="mt-4 md:col-span-2">
+            <Markdown content={event.content} />
+          </div>
         </div>
       </section>
 
