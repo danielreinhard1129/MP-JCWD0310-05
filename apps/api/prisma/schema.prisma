@@ -58,11 +58,12 @@ model Transaction {
   totalPrice Int
   expiresAt  DateTime
   userId     Int
+  status     String   @default("Waiting for Payment")
   user       User     @relation(fields: [userId], references: [id])
   eventId    Int
   event      Event    @relation(fields: [eventId], references: [id])
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  updateAt   DateTime @updatedAt
 
   @@map("transactions")
 }

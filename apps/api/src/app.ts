@@ -13,6 +13,7 @@ import { EventRouter } from './routers/event.router';
 import { AuthRouter } from './routers/auth.router';
 import {join} from 'path'
 import { UserRouter } from './routers/user.router';
+import { TransactionRouter } from './routers/transaction.router';
 
 export default class App {
   private app: Express;
@@ -57,8 +58,8 @@ export default class App {
   private routes(): void {
     const eventRouter = new EventRouter();
     const authRouter = new AuthRouter();
-    const Router = new AuthRouter();
     const userRouter = new UserRouter();
+    const transactionRouter = new TransactionRouter()
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student !`);
@@ -67,6 +68,7 @@ export default class App {
     this.app.use('/api/events', eventRouter.getRouter());
     this.app.use('/api/auth', authRouter.getRouter());
     this.app.use('/api/user', userRouter.getRouter());
+    this.app.use('/api/transaction', transactionRouter.getRouter());
   }
 
   public start(): void {

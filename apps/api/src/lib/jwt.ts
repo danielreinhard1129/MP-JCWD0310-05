@@ -18,7 +18,6 @@ export const verifyToken = (
             message: 'token is missing'
         });
     }
-
     verify(token, JWT_SECRET, (err,payload) => {
         if (err) {
             if (err instanceof TokenExpiredError) {

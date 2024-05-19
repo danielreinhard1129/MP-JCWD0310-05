@@ -1,10 +1,10 @@
 'use client'
 
-import Link from "next/link";
 import { FC } from "react";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import Image from "next/image";
 import { format } from "date-fns";
+import Link from "next/link";
 
 interface EventCardProps {
   title: string;
@@ -26,9 +26,9 @@ const EventCardDashboard: FC<EventCardProps> = ({
   city,
 }) => {
   return (
-    // <Link href={`/${eventId}`}>
-      <Card className='flex flex-col min-w-[220px] border rounded-lg border-mythemes-blue'>
-        <CardHeader className="relative w-full aspect-[4/3] rounded-lg">
+    <Link href={`/${eventId}`}>
+      <Card className='flex flex-col min-w-[180px] rounded-lg bg-mythemes-scarletgum/20 shadow-xl'>
+        <CardHeader className="relative w-full aspect-[4/3] rounded-lg bg-slate-200">
           <Image
             src={imageURL}
             alt="thumbnail"
@@ -36,16 +36,16 @@ const EventCardDashboard: FC<EventCardProps> = ({
             fill
           />
         </CardHeader>
-        <CardContent className='px-4 flex flex-col gap-1 py-4'>
-          <h2 className="line-clamp-1 text-sm font-bold">{title}</h2>
+        <CardContent className='px-4 flex flex-col text-mythemes-scarletgum gap-1 py-4'>
+          <h2 className="capitalize line-clamp-1 text-sm font-bold">{title}</h2>
           <p className="line-clamp-1 text-xs font-light italic">
             {format(startDate, 'dd MMMM yyyy')} | {format(startDate, 'h:mm a')}
           </p>
-          <p className="line-clamp-1 text-xs">{venue}</p>
-          <p className="line-clamp-1 text-xs font-semibold">{city}</p>
+          <p className="capitalize line-clamp-1 text-xs">{venue}</p>
+          <p className="capitalize line-clamp-1 text-xs font-semibold">{city}</p>
         </CardContent>
       </Card>
-    // </Link>
+    </Link>
   );
 }
 

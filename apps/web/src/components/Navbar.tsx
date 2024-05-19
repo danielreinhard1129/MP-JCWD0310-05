@@ -27,9 +27,9 @@ const Navbar = () => {
 
   // const isExplorePage = pathname === '/explore';
   return (
-    <nav className="relative z-40 bg-[#d60b52]">
-      <div className="sticky top-0 z-50 container mx-auto ">
-        <div className="flex items-center justify-between py-2 text-white">
+    <nav className="relative z-40 bg-mythemes-scarletgum">
+      <div className="sticky top-0 z-50 mx-auto ">
+        <div className="flex items-center justify-between px-10 py-2 text-white">
           <Link href="/">
             <h1 className="font-bold text-xl cursor-pointer">Eventura</h1>
           </Link>
