@@ -39,7 +39,7 @@ const Home = () => {
 
       {/* CARDS */}
 
-      <div className=" flex justify-center">
+      {/* <div className=" flex justify-center">
         <Carousel
           opts={{
             align: 'start',
@@ -47,8 +47,8 @@ const Home = () => {
           }}
           className="w-full p-20  container"
         >
-          
-            <CarouselContent className="px-10 py-2">
+
+          <CarouselContent className="px-10 py-2">
               {events.map((event, index) => {
                 return (
                   <EventCard
@@ -62,32 +62,33 @@ const Home = () => {
                     imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
                     // endDate={event.endDate}
 
-      <div className="grid grid-cols-1 md:grid-cols-3  gap-8 my-10 container">
-        {events.map((event, index) => {
-          return (
-            <EventCard
-              key={index}
-              title={event.title}
-              author={event.user.username}
-              category={event.category}
-              startDate={event.startDate}
-              price={event.price}
-              description={event.description}
-              imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
-              // endDate={event.endDate}       
+          <div className="grid grid-cols-1 md:grid-cols-3  gap-8 my-10 container">
+            {events.map((event, index) => {
+              return (
+                <EventCard
+                  key={index}
+                  title={event.title}
+                  author={event.user.username}
+                  category={event.category}
+                  startDate={event.startDate}
+                  price={event.price}
+                  description={event.description}
+                  imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
+                  // endDate={event.endDate}       
 
-                    eventId={event.id}
-                  />
-                );
-              })}
+                  eventId={event.id}
+                />
+              );
+            })}
+
             </CarouselContent>
-          
-          
+
+
             <CarouselPrevious />
             <CarouselNext />
-          
+
         </Carousel>
-      </div>
+      </div> */}
       <Footer />
     </main>
   );

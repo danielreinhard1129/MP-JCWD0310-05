@@ -11,11 +11,11 @@ const Navbar = () => {
   const { id } = useAppSelector((state) => state.user);
 
   const { user } = useGetUser(Number(id));
- 
+
   // if (id) {
   //   const { user } = useGetUser(Number(id));
   //   console.log(user?.role);
-   
+
   // }
 
 
@@ -51,9 +51,14 @@ const Navbar = () => {
                   <h3 className="cursor-pointer">Profile</h3>
                 </Link>
               ) : (
-                <Link href="/dashboard-organizer" className='hidden md:block'>
-                  <h3 className="cursor-pointer">Profile</h3>
-                </Link>
+                <div className="flex items-center gap-5">
+                  <Link href="/dashboard-organizer" className='hidden md:block'>
+                    <h3 className="cursor-pointer">Profile</h3>
+                  </Link>
+                  <Link href="/create-event" className='hidden md:block'>
+                    <h3 className="cursor-pointer">Create</h3>
+                  </Link>
+                </div>
               )}
             </div>
           ) : (

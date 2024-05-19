@@ -32,7 +32,7 @@ export class EventController {
     }
   }
 
-  // async getEventsController(req: Request, res: Response, next: NextFunction) {
+  // async getEventsByOrganizerController(req: Request, res: Response, next: NextFunction) {
   //   try {
   //     const id = req.query.id;
   //     const result = await getEventsByOrganizerService(String(id));
@@ -45,14 +45,23 @@ export class EventController {
 
   async getEventsByOrganizerController(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = req.query.id;
-      const result = await getEventsByOrganizerService(String(id));
+      const query = {
+        id: parseInt(req.query.id as string),
+        take: parseInt(req.query.take as string) || 1000000,
+        page: parseInt(req.query.page as string) || 1,
+        sortBy: parseInt(req.query.sortBy as string) || 'startDate',
+        sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
+      };
+
+      const result = await getEventsByOrganizerService(query);
 
       return res.status(200).send(result);
     } catch (error) {
       next(error);
     }
   }
+
+
 
   async getEventsController(req: Request, res: Response, next: NextFunction) {
     try {

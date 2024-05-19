@@ -18,7 +18,7 @@ export const rejectTransactionService = async (
         // }
         return await prisma.transaction.update({
             where: { id: id },
-            data: { status: 'Rejected' },
+            data: { status: 'REJECTED' },
         });
 
     } catch (error) {

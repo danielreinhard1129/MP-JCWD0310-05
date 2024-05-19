@@ -22,7 +22,6 @@ export class EventRouter {
         // this.router.post('/', this.reviewController.createReviewController);
         this.router.get('/', this.eventController.getEventsController);
         this.router.get('/organizer', this.eventController.getEventsByOrganizerController);
-
         this.router.get('/:id', this.eventController.getEventController);
       }
 

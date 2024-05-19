@@ -18,7 +18,7 @@ export const acceptTransactionService = async (
     // }
     return await prisma.transaction.update({
       where: { id: id },
-      data: { status: 'Approved' },
+      data: { status: 'APPROVED' },
     });
 
   } catch (error) {

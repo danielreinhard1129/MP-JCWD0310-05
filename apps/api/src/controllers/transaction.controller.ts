@@ -31,15 +31,40 @@
 // }
 
 import { acceptTransactionService } from '@/services/transaction/accept-transaction.service';
+import { getTransactionByCustomerService } from '@/services/transaction/get-transactionbycustomer.service';
 import { getTransactionsByOrganozerService } from '@/services/transaction/get-transactionbyorganizer.service';
 import { rejectTransactionService } from '@/services/transaction/reject-transaction.service';
 import { NextFunction, Request, Response } from 'express';
 
 export class TransactionController {
+  async getTransactionByCustomerController(req: Request, res: Response, next: NextFunction) {
+    try {
+      const query = {
+        id: parseInt(req.query.id as string),
+        take: parseInt(req.query.take as string) || 1000000,
+        page: parseInt(req.query.page as string) || 1,
+        sortBy: parseInt(req.query.sortBy as string) || 'createdAt',
+        sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
+        status: req.query.status as string,
+      };
+      const result = await getTransactionByCustomerService(query);
+      return res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async getTransactionByOrganozerController(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = req.query.id;
-      const result = await getTransactionsByOrganozerService(String(id));
+      const query = {
+        id: parseInt(req.query.id as string),
+        take: parseInt(req.query.take as string) || 1000000,
+        page: parseInt(req.query.page as string) || 1,
+        sortBy: parseInt(req.query.sortBy as string) || 'createdAt',
+        sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
+        status: req.query.status as string,
+      };
+      const result = await getTransactionsByOrganozerService(query);
       return res.status(200).send(result);
     } catch (error) {
       next(error);

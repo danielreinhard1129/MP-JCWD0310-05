@@ -14,7 +14,7 @@ export class TransactionRouter {
     private initializeRoutes(): void {
         //this.router.get('/', this.transactionController.getTransactionsController);
         this.router.get('/organizer', this.transactionController.getTransactionByOrganozerController);
-       // this.router.get('/:id', this.transactionController.getTransactionsController);
+        this.router.get('/customer', this.transactionController.getTransactionByCustomerController);
         this.router.post('/accepting', this.transactionController.getAcceptController);
         this.router.post('/rejecting', this.transactionController.getRejectController);
       }
