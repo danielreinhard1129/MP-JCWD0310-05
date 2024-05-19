@@ -8,7 +8,7 @@ export const getUserService = async (id: number) => {
         })
 
         if(!user) {
-            throw new Error('event not found')
+            throw new Error('User not Found!')
         }
 
         return user;

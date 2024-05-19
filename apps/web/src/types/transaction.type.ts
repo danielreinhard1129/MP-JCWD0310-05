@@ -1,3 +1,4 @@
+
 import { User } from './user.type';
 import { Event } from './event.type';
 export interface Transaction {
@@ -18,3 +19,19 @@ export interface IFormCreateTransaction {
     userId: number;
     eventId: number;
 }
+
+import { Event } from "./event.type";
+import { User } from "./user.type";
+
+export interface Transaction {
+    id: number;
+    quantity: number;
+    totalPrice: number;
+    expiresAt: Date;
+    userId: number;
+    eventId: number;
+    status: string;
+    user: User
+    event: Event
+  }
+

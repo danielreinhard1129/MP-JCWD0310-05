@@ -35,14 +35,14 @@ export const registerService = async (
       });
 
       const newPoint = Number(findpoint?.points) + 10000;
-      
+
       const nowDate = new Date();
       const updateDate = new Date(
         nowDate.setMonth(nowDate.getMonth() + 3),
       )
       await prisma.user.update({
         where: { id: existingRefferal.id },
-        data: { points: newPoint , pointsExpired: updateDate },
+        data: { points: newPoint, pointsExpired: updateDate },
       });
 
     }

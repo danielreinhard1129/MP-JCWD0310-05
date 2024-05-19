@@ -3,6 +3,8 @@ import { ReviewController } from "@/controllers/review.controller";
 import { verifyToken } from "@/lib/jwt";
 import { uploader } from "@/lib/uploader";
 import { Router } from "express";
+
+
 export class EventRouter {
     private router: Router;
     private eventController: EventController;
@@ -19,6 +21,8 @@ export class EventRouter {
         this.router.post('/', verifyToken, uploader('IMG', '/images').array('thumbnail', 1) ,this.eventController.createEventController);
         // this.router.post('/', this.reviewController.createReviewController);
         this.router.get('/', this.eventController.getEventsController);
+        this.router.get('/organizer', this.eventController.getEventsByOrganizerController);
+
         this.router.get('/:id', this.eventController.getEventController);
       }
 

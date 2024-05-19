@@ -18,7 +18,7 @@ const useKeepLogin = () => {
 
       dispatch(loginAction(data.data));
     } catch (error) {
-      throw error;
+      
     }
   };
   return { keepLogin };

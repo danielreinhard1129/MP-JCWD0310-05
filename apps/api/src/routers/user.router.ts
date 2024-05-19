@@ -1,4 +1,3 @@
-import { EventController } from "@/controllers/event.controller";
 import { UserController } from "@/controllers/user.controller";
 import { Router } from "express";
 export class UserRouter {

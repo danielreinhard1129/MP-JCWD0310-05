@@ -2,13 +2,15 @@ import React from 'react'
 import { SelectDemo } from './SelectCity'
 const page = () => {
   return (
-    <div className='container py-4 rounded-lg h-32 my-4 bg-[#f9b233]'>
-      <div className='md:container'>
-        <h2 className='md:text-3xl text-2xl font-bold'>Browsing event in</h2>
-      </div>
+    <div className='container h-32 my-4'>
+      <div className='flex flex-col gap-2 bg-mythemes-yellow py-4 rounded-lg'>
+        <div className='pl-6'>
+          <h2 className='md:text-2xl text-2xl font-bold'>Browsing event in</h2>
+        </div>
 
-      <div className='my-2 md:container'>
-        <SelectDemo/>
+        <div className='pl-6'>
+          <SelectDemo />
+        </div>
       </div>
     </div>
   )
