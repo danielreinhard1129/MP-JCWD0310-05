@@ -38,7 +38,7 @@ const EventCard: FC<EventCardProps> = ({
       };
   return (
     <Link href={`/${eventId}`}>
-      <Card className='flex flex-col min-w-[220px]'>
+      <Card className='flex flex-col w-[400px] mr-8 shadow-md'>
         <CardHeader>
           <div className="relative h-[200px] w-full overflow-hidden rounded-md">
             <Image
