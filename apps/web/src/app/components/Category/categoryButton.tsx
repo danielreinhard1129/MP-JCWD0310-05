@@ -9,7 +9,7 @@ interface CategoryButtonProps {
 const CategoryButton: React.FC<CategoryButtonProps> = ({ category, onClick }) => {
   return (
     
-    <Button onClick={() => onClick(category)} className='bg-[#482954]'>
+    <Button onClick={() => onClick(category)} className='bg-mythemes-darkpink'>
       {category}
     </Button>
   );

@@ -17,7 +17,6 @@ export interface Event {
   createdAt: Date;
   updateAt: Date;
   deletedAt: Date | null;
-
   user: User;
 }
 

@@ -1,28 +1,35 @@
 'use client';
 import { Input } from '@/components/ui/input';
+import useGetUser from '@/hooks/api/user/useGetUser';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { logoutAction } from '@/redux/slices/userSlice';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-const Navbar = () => {
 
-  const router = useRouter();
+
+const Navbar = () => {
   const dispatch = useAppDispatch();
   const { id } = useAppSelector((state) => state.user);
+
+  const { user } = useGetUser(Number(id));
+ 
+  // if (id) {
+  //   const { user } = useGetUser(Number(id));
+  //   console.log(user?.role);
+   
+  // }
+
+
 
   const logout = () => {
     localStorage.removeItem('token');
     dispatch(logoutAction());
   };
-  const pathname = usePathname();
-
-  console.log(id);
 
   // const isExplorePage = pathname === '/explore';
   return (
-    <nav className="relative z-40 bg-[#d60b52]">
-      <div className="sticky top-0 z-50 container mx-auto ">
-        <div className="flex items-center justify-between py-2 text-white">
+    <nav className="relative z-40 bg-mythemes-scarletgum">
+      <div className="sticky top-0 z-50 mx-auto ">
+        <div className="flex items-center justify-between px-10 py-2 text-white">
           <Link href="/">
             <h1 className="font-bold text-xl cursor-pointer">Eventura</h1>
           </Link>
@@ -39,9 +46,15 @@ const Navbar = () => {
               <Link href="/login" onClick={logout}>
                 <h3 className="cursor-pointer" >Logout</h3>
               </Link>
-              <Link href="/create-event" className='hidden md:block'>
-                <h3 className="cursor-pointer">Create</h3>
-              </Link>
+              {(user?.role == 'customer') ? (
+                <Link href="/dashboard-customer" className='hidden md:block'>
+                  <h3 className="cursor-pointer">Profile</h3>
+                </Link>
+              ) : (
+                <Link href="/dashboard-organizer" className='hidden md:block'>
+                  <h3 className="cursor-pointer">Profile</h3>
+                </Link>
+              )}
             </div>
           ) : (
             <div className="flex items-center justify-end gap-5">
