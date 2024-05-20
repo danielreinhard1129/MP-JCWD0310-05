@@ -15,7 +15,7 @@ import {
 } from './ui/sheet';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
-import { Home, LogOut, Menu, SquarePen } from 'lucide-react';
+import { BookImage, Home, LogOut, Menu, SquarePen } from 'lucide-react';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -23,11 +23,9 @@ const Navbar = () => {
 
   const { user } = useGetUser(Number(id));
 
-
   // if (id) {
   //   const { user } = useGetUser(Number(id));
   //   console.log(user?.role);
-
 
   // }
 
@@ -63,14 +61,62 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <div className="flex items-center gap-5">
-                  <Link href="/dashboard-organizer" className='hidden md:block'>
+                  <Link href="/dashboard-organizer" className="hidden md:block">
                     <h3 className="cursor-pointer">Profile</h3>
                   </Link>
-                  <Link href="/create-event" className='hidden md:block'>
+                  <Link href="/create-event" className="hidden md:block">
                     <h3 className="cursor-pointer">Create</h3>
                   </Link>
                 </div>
               )}
+              <div className="md:hidden">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Menu />
+                  </SheetTrigger>
+
+                  <SheetContent>
+                    <SheetHeader>
+                      <SheetTitle>Welcome, {user?.username}</SheetTitle>
+                    </SheetHeader>
+                    <Separator />
+                    <div className="my-4">
+                      <ul className="flex flex-col gap-3">
+                        <li className="flex gap-5 items-center">
+                          <Home />
+                          <Link href="/">
+                            <p className="text-lg hover:text-[#d60b52]">Home</p>
+                          </Link>
+                        </li>
+                        <li className="flex gap-5 items-center">
+                          <SquarePen />
+                          <Link href="/create-event">
+                            <p className="text-lg hover:text-[#d60b52]">
+                              Create Event
+                            </p>
+                          </Link>
+                        </li>
+                        <li className="flex gap-5 items-center">
+                          <BookImage />
+                          <Link href="/event-list">
+                            <p className="text-lg hover:text-[#d60b52]">
+                              Discover
+                            </p>
+                          </Link>
+                        </li>
+                        <li className="flex gap-5 items-center">
+                          <LogOut />
+                          <Link href="/login" onClick={logout}>
+                            <p className="text-lg hover:text-[#d60b52]">
+                              LogOut
+                            </p>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </SheetContent>
+                </Sheet>
+              </div>
             </div>
           ) : (
             <div className="flex items-center justify-end gap-5">
@@ -97,19 +143,17 @@ const Navbar = () => {
                     <SheetHeader>
                       <SheetTitle>Register your account</SheetTitle>
                       <SheetDescription>
-                        Make changes to your profile here. Click save when
-                        you're done.
+                        Make changes to your profile here. Click save when youre
+                        done.
                       </SheetDescription>
 
                       <div className="flex gap-3 justify-center p-2">
                         <Link href="/login">
-                        <Button className="bg-[#0e71b8]">Login</Button>
+                          <Button className="bg-[#0e71b8]">Login</Button>
                         </Link>
                         <Link href="/register">
-                        <Button className="bg-[#0e71b8]">Register</Button>
+                          <Button className="bg-[#0e71b8]">Register</Button>
                         </Link>
-                        
-                        
                       </div>
                     </SheetHeader>
                     <Separator />
@@ -118,7 +162,7 @@ const Navbar = () => {
                         <li className="flex gap-5 items-center">
                           <Home />
                           <Link href="/">
-                          <p className="text-lg hover:text-[#d60b52]">Home</p>
+                            <p className="text-lg hover:text-[#d60b52]">Home</p>
                           </Link>
                         </li>
                         <li className="flex gap-5 items-center">
@@ -126,6 +170,14 @@ const Navbar = () => {
                           <Link href="/create-event">
                             <p className="text-lg hover:text-[#d60b52]">
                               Create Event
+                            </p>
+                          </Link>
+                        </li>
+                        <li className="flex gap-5 items-center">
+                          <BookImage />
+                          <Link href="/event-list">
+                            <p className="text-lg hover:text-[#d60b52]">
+                              Discover
                             </p>
                           </Link>
                         </li>

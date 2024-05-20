@@ -3,11 +3,7 @@ import { FC } from 'react';
 import ReactPaginate from 'react-paginate';
 
 
-interface PaginationProps {
-  total: number;
-  take: number;
-  onChangePage: ({ selected }: { selected: number }) => void;
-}
+
 interface PaginationProps {
   total: number;
   take: number;

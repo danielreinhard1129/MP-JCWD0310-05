@@ -73,19 +73,7 @@ const TransactionDialog: FC<TransactionDialogProps> = ({
     );
   };
 
-  const handleCheckOut = async () => {
-    try {
-      const payload = {
-        userId: user.id,
-        // eventId: event.id,
-        totalPrice: totalPrice, 
-        quantity: quantity,
-      };
-       await createTransaction(payload)
-    } catch (error) {
-      
-    }
-  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
