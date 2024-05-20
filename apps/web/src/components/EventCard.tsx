@@ -38,7 +38,7 @@ const EventCard: FC<EventCardProps> = ({
       };
   return (
     <Link href={`/${eventId}`}>
-      <Card className='flex flex-col w-[400px] mr-8 shadow-md'>
+      <Card className='flex flex-col w-[300px] md:mr-8 shadow-md'>
         <CardHeader>
           <div className="relative h-[200px] w-full overflow-hidden rounded-md">
             <Image
@@ -53,7 +53,7 @@ const EventCard: FC<EventCardProps> = ({
           <Badge variant="outline" className="rounded-sm bg-green-100 w-fit">
             {category}
           </Badge>
-          <h2 className="line-clamp-2 text-lg font-semibold">{title}</h2>
+          <h2 className="line-clamp-1 text-lg font-semibold">{title}</h2>
           <p className="text-sm font-light italic">
             {format(startDate, 'dd MMMM yyyy')} 
              

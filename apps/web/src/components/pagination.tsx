@@ -1,7 +1,15 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { FC } from 'react';
 import ReactPaginate from 'react-paginate';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { FC } from 'react';
+import ReactPaginate from 'react-paginate';
 
+interface PaginationProps {
+  total: number;
+  take: number;
+  onChangePage: ({ selected }: { selected: number }) => void;
+}
 interface PaginationProps {
   total: number;
   take: number;

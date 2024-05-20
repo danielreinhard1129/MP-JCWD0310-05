@@ -1,7 +1,5 @@
-
 import { User } from './user.type';
 import { Event } from './event.type';
-
 
 export interface Transaction {
   id: number;
@@ -18,8 +16,8 @@ export interface Transaction {
 }
 
 export interface IFormCreateTransaction {
-    quantity: number;
-    userId: number;
-    eventId: number;
+  totalPrice: number;
+  quantity: number;
+  userId: number;
+  eventId: number;
 }
-

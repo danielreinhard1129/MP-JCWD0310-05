@@ -24,6 +24,7 @@ const useCreateEvent = () => {
         city,
         venue,
         price,
+    
       } = payload;
 
       const createEventForm = new FormData();
@@ -47,7 +48,7 @@ const useCreateEvent = () => {
       await axiosInstance.post<Event>('/events', createEventForm);
 
       // toast success here
-      router.push('/:id');
+      router.push('/');
     } catch (error) {
       if (error instanceof AxiosError) {
         //TODO: put toast here

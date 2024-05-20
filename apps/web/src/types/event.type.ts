@@ -33,5 +33,6 @@ export interface IFormCreateEvent {
   price: number;
   userId?: number;
   ticketLimit: number;
+
 }
 

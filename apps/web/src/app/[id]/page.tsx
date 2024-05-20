@@ -25,9 +25,6 @@ import CreateReviewDialog from './components/CreateReviewDialog';
 
 import { Button } from '@/components/ui/button';
 
-
-
-
 const EventDetail = ({ params }: { params: { id: string } }) => {
   const formattedPrice = (price: number): string => {
     return price === 0
@@ -53,7 +50,6 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
     return notFound();
   }
 
-
   // if (!review) {
   //   return notFound();
   // }
@@ -77,9 +73,7 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
             {/* EVENT OVERVIEW CARD */}
 
             <Card>
-
-
-              <CardHeader>
+              <CardHeader className="container">
                 <CardTitle>
                   <h1 className="md:text-3xl text-2xl font-semibold">
                     {event.title}
@@ -87,7 +81,10 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
                 </CardTitle>
 
                 <div className="space-y-1.5">
-                  <Badge variant="outline" className="rounded-sm bg-green-100">
+                  <Badge
+                    variant="outline"
+                    className="rounded-sm bg-green-100 mb-4"
+                  >
                     {event.category}
                   </Badge>
                 </div>
@@ -119,29 +116,27 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
               </CardFooter>
             </Card>
 
-
             {/* BUY TICKET CARD */}
             <Card className="mt-4 pt-5">
-              <CardContent className="flex justify-between items-center">
-                <h2 className="">Buy ticket</h2>
-                <TransactionDialog
-                  price={event.price}
-                  ticketLimit={event.ticketLimit}
-                  formattedPrice={priceString}
-                />
-                <CreateReviewDialog />
+              <CardContent className="flex flex-col md:flex-row justify-between items-center">
+                <h2 className="mb-3">Buy ticket</h2>
+                <div className='flex gap-2'>
+                  <TransactionDialog
+                    price={event.price}
+                    ticketLimit={event.ticketLimit}
+                    formattedPrice={priceString}
+                  />
+                  <CreateReviewDialog />
+                </div>
               </CardContent>
             </Card>
           </div>
 
-
           <div className="mt-4 md:col-span-2">
             <Markdown content={event.content} />
           </div>
-
         </div>
-
-      </section >
+      </section>
 
       <Footer />
     </main >

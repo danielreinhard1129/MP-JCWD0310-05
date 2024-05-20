@@ -1,5 +1,7 @@
 import { createEventService } from '@/services/event/create-event-service';
+// import { getCitiesService } from '@/services/event/get-event-cities-service';
 import { getEventService } from '@/services/event/get-event-service';
+import { getEventsByParamsService } from '@/services/event/get-events-by-params-service';
 import { getEventsService } from '@/services/event/get-events-service';
 import { getEventsByOrganizerService } from '@/services/event/get-eventsbyorganizer-service';
 import { NextFunction, Request, Response } from 'express';
@@ -43,7 +45,11 @@ export class EventController {
   //   }
   // }
 
-  async getEventsByOrganizerController(req: Request, res: Response, next: NextFunction) {
+  async getEventsByOrganizerController(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
       const query = {
         id: parseInt(req.query.id as string),
@@ -71,6 +77,7 @@ export class EventController {
         sortBy: (req.query.sortBy as string) || 'createdAt',
         sortOrder: (req.query.sortOrder as string) || 'desc',
         search: (req.query.search as string) || '',
+        category: (req.query.category as string) || '',
       };
       const result = await getEventsService(query);
 
@@ -79,5 +86,4 @@ export class EventController {
       next(error);
     }
   }
-
 }

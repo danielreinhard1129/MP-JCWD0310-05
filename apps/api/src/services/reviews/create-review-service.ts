@@ -20,6 +20,7 @@ export const createReviewService = async (body: CreateReviewBody) => {
                 ...body,
                 userId: Number(userId),
                 eventId: Number(eventId),
+                // rating: Number(rating),
                 //rating: Number(rating),
                 comment: String(comment),
                 createdAt: String(createdAt),

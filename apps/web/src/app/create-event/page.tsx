@@ -205,6 +205,7 @@ const CreateEvent = () => {
           </div>
         </div>
       </form>
+      <Footer/>
     </main>
   );
 };
