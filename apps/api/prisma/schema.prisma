@@ -26,25 +26,26 @@ model User {
   Event         Event[]
   Transaction   Transaction[]
 
-  Review        Review[]
-
+  Review      Review[]
+  UserVoucher UserVoucher[]
+  Voucher     Voucher[]
 
   @@map("users")
 }
 
 model Event {
-  id          Int           @id @default(autoincrement())
-  title       String        @unique
-  description String        @db.LongText()
+  id          Int    @id @default(autoincrement())
+  title       String @unique
+  description String @db.LongText()
 
-  booked      Int           @default(0)
+  booked Int @default(0)
 
-  category    String
-  content     String        @db.LongText()
-  venue       String        @default("")
-  city        String        @default("")
+  category String
+  content  String @db.LongText()
+  venue    String @default("")
+  city     String @default("")
 
-  price       Int?          @default(0)
+  price Int? @default(0)
 
   ticketLimit Int           @default(0)
   user        User          @relation(fields: [userId], references: [id])
@@ -57,8 +58,8 @@ model Event {
   updatedAt   DateTime      @updatedAt
   Transaction Transaction[]
 
-  Review      Review[]
-
+  Review  Review[]
+  Voucher Voucher[]
 
   @@map("events")
 }
@@ -76,9 +77,11 @@ model Transaction {
   createdAt  DateTime @default(now())
   updateAt   DateTime @updatedAt
 
+  userVoucher   UserVoucher? @relation(fields: [userVoucherId], references: [id])
+  userVoucherId Int?
+
   @@map("transactions")
 }
-
 
 model Review {
   id        Int      @id @default(autoincrement())
@@ -93,3 +96,29 @@ model Review {
   @@map("reviews")
 }
 
+model UserVoucher {
+  id          Int           @id @default(autoincrement())
+  userId      Int
+  user        User          @relation(fields: [userId], references: [id])
+  Transaction Transaction[]
+  voucher     Voucher       @relation(fields: [voucherId], references: [id])
+  voucherId   Int
+
+  @@map("userVouchers")
+}
+
+model Voucher {
+  id          Int      @id @default(autoincrement())
+  name        String
+  amount      Int
+  limit       Int
+  expiredDate DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User          @relation(fields: [userId], references: [id])
+  event       Event         @relation(fields: [eventId], references: [id])
+  userId      Int
+  eventId     Int
+  UserVoucher UserVoucher[]
+}
