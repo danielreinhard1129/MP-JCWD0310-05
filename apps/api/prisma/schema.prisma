@@ -91,10 +91,7 @@ model Transaction {
   userVoucher   UserVoucher? @relation(fields: [userVoucherId], references: [id])
   userVoucherId Int?
   userCouponId  Int?
-
-  userVoucher   UserVoucher? @relation(fields: [userVoucherId], references: [id])
-  userVoucherId Int?
-
+  
   @@map("transactions")
 }
 
