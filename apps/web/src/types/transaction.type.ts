@@ -10,6 +10,7 @@ export interface Transaction {
   user: User;
   eventId: number;
   event: Event;
+  status: string;
   createdAt: Date;
   updateAt: Date;
 }

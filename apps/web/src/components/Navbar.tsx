@@ -23,9 +23,11 @@ const Navbar = () => {
 
   const { user } = useGetUser(Number(id));
 
+
   // if (id) {
   //   const { user } = useGetUser(Number(id));
   //   console.log(user?.role);
+
 
   // }
 
@@ -60,49 +62,15 @@ const Navbar = () => {
                   <h3 className="cursor-pointer">Profile</h3>
                 </Link>
               ) : (
-                <Link href="/dashboard-organizer" className="hidden md:block">
-                  <h3 className="cursor-pointer">Profile</h3>
-                </Link>
+                <div className="flex items-center gap-5">
+                  <Link href="/dashboard-organizer" className='hidden md:block'>
+                    <h3 className="cursor-pointer">Profile</h3>
+                  </Link>
+                  <Link href="/create-event" className='hidden md:block'>
+                    <h3 className="cursor-pointer">Create</h3>
+                  </Link>
+                </div>
               )}
-              <Link href="/create-event" className="hidden md:block">
-                <h3 className="cursor-pointer">Create</h3>
-              </Link>
-              <div className="md:hidden">
-                <Sheet>
-                  <SheetTrigger asChild>
-                    <Menu />
-                  </SheetTrigger>
-
-                  <SheetContent>
-                    <div className="my-4">
-                      <ul className="flex flex-col gap-3">
-                        <li className="flex gap-5 items-center">
-                          <Home />
-                          <Link href="/">
-                            <p className="text-lg hover:text-[#d60b52]">Home</p>
-                          </Link>
-                        </li>
-                        <li className="flex gap-5 items-center">
-                          <SquarePen />
-                          <Link href="/create-event">
-                            <p className="text-lg hover:text-[#d60b52]">
-                              Create Event
-                            </p>
-                          </Link>
-                        </li>
-                        <li className="flex gap-5 items-center">
-                          <LogOut />
-                          <Link href="/login" onClick={logout}>
-                            <h3 className="text-lg hover:text-[#d60b52]">
-                              Logout
-                            </h3>
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </SheetContent>
-                </Sheet>
-              </div>
             </div>
           ) : (
             <div className="flex items-center justify-end gap-5">

@@ -1,13 +1,36 @@
 import prisma from '@/prisma';
+import { PaginationQueryParams } from '@/types/pagination.type';
+import { Prisma } from '@prisma/client';
 
-export const getEventsByOrganizerService = async (id: string) => {
+interface GetEventsQuery extends PaginationQueryParams {
+    id: number;
+}
+
+export const getEventsByOrganizerService = async (query: GetEventsQuery) => {
     try {
+        const { page, sortBy, sortOrder, take, id } = query;
+
+        const whereClause: Prisma.EventWhereInput = {
+            userId: Number(id),
+        };
+
+
         const events = await prisma.event.findMany({
-            where: { userId: Number(id) },
+            where: whereClause,
+            skip: (page - 1) * take,
+            take: take,
+            orderBy: {
+                [sortBy]: sortOrder,
+            },
             include: { user: true },
         });
 
-        return events;
+        const count = await prisma.event.count({ where: whereClause });
+
+        return {
+            data: events,
+            meta: { page, take, total: count },
+          };
     } catch (error) {
         throw error;
     }

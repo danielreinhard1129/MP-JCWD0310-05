@@ -6,7 +6,8 @@ import { AuthCard, AuthCardContent, AuthCardHeader, AuthCardTitle, Card, CardCon
 import useLogin from '@/hooks/api/auth/useLogin';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
-import { validationSchema } from './validationSchema';
+import { validationSchema } from "./validationSchema";
+
 
 const Login = () => {
   const { login } = useLogin();
@@ -14,10 +15,8 @@ const Login = () => {
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
       initialValues: {
-        email: '',
-        password: '',
-        role: '',
-        referral: '',
+        email: "",
+        password: "",
       },
       validationSchema,
       onSubmit: (values) => {
@@ -73,7 +72,7 @@ const Login = () => {
                 <p
                   className="text-center text-sm"
                 >
-                  Don't have an account?
+                  Dont have an account?
                 </p>
                 <p
                   className="cursor-pointer text-mythemes-scarletgum font-semibold text-sm hover:text-mythemes-purple"

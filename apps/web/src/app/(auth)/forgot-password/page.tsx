@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useFormik } from 'formik';
 import FormInput from '@/components/FormInput';
 import { Button } from '@/components/ui/button';
-import { validationSchema } from './validationSchema';
-import useForgotPassword from '@/hooks/api/auth/useForgotPassword';
-import { Loader2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { validationSchema } from "./validationSchema";
+import useForgotPassword from "@/hooks/api/auth/useForgotPassword";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const ForgotPassword = () => {
   const { forgotPassword, isLoading } = useForgotPassword();
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
   const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     useFormik({
       initialValues: {
-        email: '',
+        email: "",
       },
       validationSchema,
       onSubmit: ({ email }) => {
@@ -48,17 +48,17 @@ const ForgotPassword = () => {
               </div>
               <Button className="mt-6 w-full"  type="submit" disabled={isLoading}>
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                {isLoading ? 'Loading' : 'Forgot Password'}                
+                {isLoading ? "Loading" : "Forgot Password"}                
               </Button>
-              <div className='flex justify-center gap-1 py-4'>
+              <div className="flex justify-center gap-1 py-4">
                 <p
                   className="text-center text-xs"
                 >
-                  Don't have an account?                   
+                  Dont have an account?                   
                 </p>
                 <p 
                 className="cursor-pointer font-medium text-purple-700 text-xs"
-                    onClick={() => router.push('/register')}>
+                    onClick={() => router.push("/register")}>
                       Sign up
                 </p>
               </div>

@@ -30,10 +30,10 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
     return price === 0
       ? 'Free entrance'
       : new Intl.NumberFormat('id-ID', {
-          style: 'currency',
-          currency: 'IDR',
-          minimumFractionDigits: 0,
-        }).format(price);
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+      }).format(price);
   };
   const { isLoading, event } = useGetEvent(Number(params.id));
   // const { review } = useGetReview(Number(params.id));
@@ -139,7 +139,7 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
       </section>
 
       <Footer />
-    </main>
+    </main >
   );
 };
 

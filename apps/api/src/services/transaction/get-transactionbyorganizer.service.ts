@@ -1,38 +1,43 @@
 import prisma from "@/prisma"
+import { PaginationQueryParams } from "@/types/pagination.type";
 import { Prisma } from "@prisma/client";
 
-export const getTransactionsByOrganozerService = async (id: string) => {
+interface GetEventsQuery extends PaginationQueryParams {
+  id: number;
+  status?: string;
+}
+
+export const getTransactionsByOrganozerService = async (query: GetEventsQuery) => {
   try {
-    // const transaction = await prisma.transaction.findMany({
-    //   where: { userId: Number(id) },
-    //   include: { user: true, event: true },
-    // });
+    const { page, sortBy, sortOrder, take, id, status } = query;
+
     const whereClause: Prisma.TransactionWhereInput = {
-      event: { userId:  Number(id) } 
+      status: status,
+      event: { user: { id: Number(id) } },
     }
 
     const transaction = await prisma.transaction.findMany({
-      where: {event:{user:{id:Number(id)}}},
+      //where: {event:{user:{id:Number(id)}}},
+      where: whereClause,
+      skip: (page - 1) * take,
+      take: take,
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
       include: { user: true, event: true },
-      });
+    });
 
+    const count = await prisma.transaction.count({ where: whereClause });
 
     if (!transaction) {
       throw new Error('User not Found!')
     }
 
-    return transaction;
+    return {
+      data: transaction,
+      meta: { page, take, total: count }
+    };
   } catch (error) {
     throw error
   }
 }
-
-
-// import prisma from '@/prisma';
-// import { PaginationQueryParams } from '@/types/pagination.type';
-// import { Prisma } from '@prisma/client';
-
-// interface GetTransactionsQuery extends PaginationQueryParams {
-//   id: number;
-//   search: string;
-// }

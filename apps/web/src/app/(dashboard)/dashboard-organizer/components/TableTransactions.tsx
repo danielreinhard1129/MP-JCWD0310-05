@@ -1,8 +1,10 @@
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { TableCell, TableRow } from '@/components/ui/table';
 import useAcceptTransaction from '@/hooks/api/transaction/useAcceptTransaction';
 import useRejectTransaction from '@/hooks/api/transaction/useRejectTransaction';
 import { CircleCheck, CircleXIcon } from 'lucide-react';
-import React, { FC } from 'react'
+import { FC } from 'react';
 
 interface TransactionRowTableProps {
     key: number;
@@ -37,11 +39,38 @@ const TableTransactions: FC<TransactionRowTableProps> = ({
             <TableCell>{price}</TableCell>
             <TableCell>{amount}</TableCell>
             <TableCell>{status}</TableCell>
-
-            <TableCell><div className='flex gap-2'>
-                <CircleXIcon onClick={() => { rejecting(values) }} className='text-mythemes-red cursor-pointer hover:text-mythemes-red/80' />
-                <CircleCheck onClick={() => { accepting(values) }} className='text-green-600 cursor-pointer hover:text-green-600/80' />
-            </div></TableCell>
+            <TableCell>
+                <div className='flex gap-4 justify-center'>
+                    <Dialog>
+                        <DialogTrigger><CircleXIcon className='text-mythemes-red cursor-pointer hover:text-mythemes-red/80' /></DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                <DialogDescription>
+                                    This action cannot be undo. This will permanently reject your customer transactions request.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <DialogFooter>
+                                <Button onClick={() => { rejecting(values) }}>Reject</Button>
+                            </DialogFooter>
+                        </DialogContent>
+                    </Dialog>
+                    <Dialog>
+                        <DialogTrigger><CircleCheck className='text-green-600 cursor-pointer hover:text-green-600/80' /></DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                <DialogDescription>
+                                This action cannot be undo. This will permanently Accept your customer transactions request.
+                                </DialogDescription>
+                            </DialogHeader>
+                            <DialogFooter>
+                                <Button onClick={() => { accepting(values) }}>Accept</Button>
+                            </DialogFooter>
+                        </DialogContent>
+                    </Dialog>
+                </div>
+            </TableCell>
         </TableRow>
     )
 }

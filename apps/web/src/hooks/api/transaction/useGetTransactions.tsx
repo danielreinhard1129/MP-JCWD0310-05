@@ -1,27 +1,26 @@
 'use client';
-
 import { axiosInstance } from '@/lib/axios';
-import { Event } from '@/types/event.type';
 import { IPaginationMeta, IPaginationQueries } from '@/types/pagination.type';
+import { Transaction } from '@/types/transaction.type';
 import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 
 interface IGetEventsQuery extends IPaginationQueries {
   id: number;
+  status?: string;
 }
 
-const useGetEventsByOrganizer = (queries: IGetEventsQuery) => {
-  const [data, setData] = useState<Event[]>([]);
+const useGetTransactions = (queries: IGetEventsQuery) => {
+  const [data, setData] = useState<Transaction[]>([]);
   const [meta, setMeta] = useState<IPaginationMeta | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const getEvents = async () => {
+  const getTransactions = async () => {
     try {
-      const { data } = await axiosInstance.get(`/events/organizer`,{
+      const { data } = await axiosInstance.get(`/transaction/customer`,{
         params: queries,
-      });
-
-      setData(data.data);
+      })
+      setData(data.data)
       setMeta(data.meta)
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -29,14 +28,15 @@ const useGetEventsByOrganizer = (queries: IGetEventsQuery) => {
       }
     } finally {
       setIsLoading(false);
-    }
-  };
+    };
+  }
 
   useEffect(() => {
-    getEvents();
+    getTransactions();
+  
   }, [queries?.page, queries.id]);
 
-  return { data, isLoading, meta, refetch: getEvents };
+  return { data, isLoading, meta, refetch: getTransactions };
 };
 
-export default useGetEventsByOrganizer;
+export default useGetTransactions;
