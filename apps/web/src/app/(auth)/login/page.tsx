@@ -16,6 +16,8 @@ const Login = () => {
       initialValues: {
         email: '',
         password: '',
+        role: '',
+        referral: '',
       },
       validationSchema,
       onSubmit: (values) => {

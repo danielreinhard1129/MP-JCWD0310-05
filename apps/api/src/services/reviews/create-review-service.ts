@@ -5,7 +5,7 @@ interface CreateReviewBody extends Omit <Review, 'id'> {}
 
 export const createReviewService = async (body: CreateReviewBody) => {
     try {
-        const {eventId, userId, rating, comment, createdAt} = body
+        const {eventId, userId,  comment, createdAt} = body
 
         const user = await prisma.review.findFirst({
             where: {id: Number(userId)}
@@ -20,7 +20,7 @@ export const createReviewService = async (body: CreateReviewBody) => {
                 ...body,
                 userId: Number(userId),
                 eventId: Number(eventId),
-                rating: Number(rating),
+                // rating: Number(rating),
                 comment: String(comment),
                 createdAt: String(createdAt),
             }

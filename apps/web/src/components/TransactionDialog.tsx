@@ -12,6 +12,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import useGetEvent from '@/hooks/api/event/useGetEvent';
+import useCreateTransaction from '@/hooks/api/transaction/useCreateTransaction';
+import { useAppSelector } from '@/redux/hooks';
 import { event } from 'cypress/types/jquery';
 import { notFound, useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
@@ -20,12 +22,22 @@ interface TransactionDialogProps {
   price: number;
   ticketLimit: number;
   formattedPrice: string;
+  // eventId: number;
+  // paramsId: string;
 }
 
 const TransactionDialog: FC<TransactionDialogProps> = ({
   price,
   ticketLimit,
+
 }) => {
+  const { createTransaction } = useCreateTransaction();
+  const user = useAppSelector((state) => state.user);
+ 
+  // const { event } = useGetEvent(event?.id);
+  // if (!event?.id) {
+  //   return notFound;  // or render a fallback UI
+  // }
   const formattedPrice = (price: number): string => {
     return price === 0
       ? 'Free entrance'
@@ -38,6 +50,9 @@ const TransactionDialog: FC<TransactionDialogProps> = ({
 
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
+
+  
+
 
   const increment = () => setQuantity(quantity + 1);
   const decrement = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
@@ -57,6 +72,20 @@ const TransactionDialog: FC<TransactionDialogProps> = ({
       `/transaction-detail?quantity=${quantity}&totalPrice=${totalPrice}`,
     );
   };
+
+  const handleCheckOut = async () => {
+    try {
+      const payload = {
+        userId: user.id,
+        // eventId: event.id,
+        totalPrice: totalPrice, 
+        quantity: quantity,
+      };
+       await createTransaction(payload)
+    } catch (error) {
+      
+    }
+  }
   return (
     <Dialog>
       <DialogTrigger asChild>

@@ -22,14 +22,20 @@ const Home = () => {
   const [page, setPage] = useState<number>(1);
   const { data: events, meta } = useGetEvents({
     page,
-    take: 4,
+    take: 6,
   });
   return (
     <main className="h-screen flex flex-col">
       {/* JUMBOTRON */}
       <div className="md:container">
-        <div className="relative h-36 md:h-96 rounded-lg my-4 flex flex-col text-center justify-center">
-          <Image src="/jumbo.avif" alt="Hero Pictures" fill className="object-cover rounded-lg" loading="lazy" />
+        <div className="relative h-56 md:h-96 mb-4 md:rounded-lg md:my-4 flex flex-col text-center justify-center">
+          <Image
+            src="/jumbo.avif"
+            alt="Hero Pictures"
+            fill
+            className="object-cover md:rounded-lg"
+            loading="lazy"
+          />
         </div>
       </div>
 
@@ -45,48 +51,49 @@ const Home = () => {
             align: 'start',
             // loop: true,
           }}
-          className="w-full p-20  container"
+          className="w-full p-20  container hidden md:block"
         >
-          
-            <CarouselContent className="px-10 py-2">
-              {events.map((event, index) => {
-                return (
-                  <EventCard
-                    key={index}
-                    title={event.title}
-                    author={event.user.username}
-                    category={event.category}
-                    startDate={event.startDate}
-                    price={event.price}
-                    description={event.description}
-                    imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
-                    // endDate={event.endDate}
+          <CarouselContent className="px-10 py-2">
+            {events.map((event, index) => {
+              return (
+                <EventCard
+                  key={index}
+                  title={event.title}
+                  author={event.user.username}
+                  category={event.category}
+                  startDate={event.startDate}
+                  price={event.price}
+                  description={event.description}
+                  imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
+                  // endDate={event.endDate}
+                  eventId={event.id}
+                />
+              );
+            })}
+          </CarouselContent>
 
-      <div className="grid grid-cols-1 md:grid-cols-3  gap-8 my-10 container">
-        {events.map((event, index) => {
-          return (
-            <EventCard
-              key={index}
-              title={event.title}
-              author={event.user.username}
-              category={event.category}
-              startDate={event.startDate}
-              price={event.price}
-              description={event.description}
-              imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
-              // endDate={event.endDate}       
-
-                    eventId={event.id}
-                  />
-                );
-              })}
-            </CarouselContent>
-          
-          
-            <CarouselPrevious />
-            <CarouselNext />
-          
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
+
+        <div className='flex flex-col md:hidden gap-5 mb-6'>
+        {events.map((event, index) => {
+              return (
+                <EventCard
+                  key={index}
+                  title={event.title}
+                  author={event.user.username}
+                  category={event.category}
+                  startDate={event.startDate}
+                  price={event.price}
+                  description={event.description}
+                  imageURL={appConfig.baseURL + `/assets${event.thumbnail}`}
+                  // endDate={event.endDate}
+                  eventId={event.id}
+                />
+              );
+            })}
+        </div>
       </div>
       <Footer />
     </main>
