@@ -29,8 +29,10 @@ model User {
   Review      Review[]
   UserVoucher UserVoucher[]
   Voucher     Voucher[]
+
   Coupon      Coupon[]
   UserCoupon  UserCoupon[]
+
 
   @@map("users")
 }
@@ -48,6 +50,7 @@ model Event {
   city     String @default("")
 
   price Int
+
 
   ticketLimit Int           @default(0)
   user        User          @relation(fields: [userId], references: [id])
@@ -89,8 +92,12 @@ model Transaction {
   userVoucherId Int?
   userCouponId  Int?
 
+  userVoucher   UserVoucher? @relation(fields: [userVoucherId], references: [id])
+  userVoucherId Int?
+
   @@map("transactions")
 }
+
 
 enum TransactionStatus {
   PENDING
@@ -99,6 +106,7 @@ enum TransactionStatus {
   CANCELED
   EXPIRED
 }
+
 
 model Review {
   id        Int      @id @default(autoincrement())
@@ -117,7 +125,9 @@ model UserVoucher {
   id          Int           @id @default(autoincrement())
   userId      Int
   user        User          @relation(fields: [userId], references: [id])
+
   isUse       Boolean
+
   Transaction Transaction[]
   voucher     Voucher       @relation(fields: [voucherId], references: [id])
   voucherId   Int
@@ -139,6 +149,7 @@ model Voucher {
   userId      Int
   eventId     Int
   UserVoucher UserVoucher[]
+
 
   @@map("vouchers")
 }
@@ -169,4 +180,5 @@ model Coupon {
   UserCoupon  UserCoupon[]
 
   @@map("coupons")
+
 }
