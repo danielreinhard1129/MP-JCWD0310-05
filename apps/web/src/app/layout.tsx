@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <StoreProvider>
           <AuthProvider>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
             <Toaster />
           </AuthProvider>

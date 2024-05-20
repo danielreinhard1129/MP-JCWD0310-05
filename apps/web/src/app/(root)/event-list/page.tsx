@@ -2,23 +2,17 @@
 import EventCard from '@/components/EventCard';
 import { Footer } from '@/components/Footer';
 import useGetEvents from '@/hooks/api/event/useGetEvents';
-// import useGetCities from '@/hooks/api/event/useGetEventCities';
+
+import CategoryPicker from '@/components/CategoryPicker';
 import Pagination from '@/components/Pagination';
 import { appConfig } from '@/utils/config';
-import { useEffect, useState } from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useRouter } from 'next/navigation';
-import CategoryPicker from '@/components/CategoryPicker';
-// import useGetFilterEvents from '@/hooks/api/event/useGetFilterEvents';
-// import { CategoryPicker } from '@/components/FilterCategory';
-
+import { useState } from 'react';
+import { CategoryDropDown } from './components/CategoryDropDown';
 
 const Page = () => {
   const [page, setPage] = useState<number>(1);
-//   const [location, setLocation] = useState<string>('all');
-//   const [category, setCategory] = useState<string>('all');
-const router = useRouter();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const { data: events, meta } = useGetEvents({
     page,
     take: 6,
@@ -27,25 +21,25 @@ const router = useRouter();
     setPage(selected + 1);
   };
 
-
   return (
     <main className="min-h-screen flex flex-col">
-      <div className="flex flex-1">
+      <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-100 p-4">
-          <div className="mb-6">
+        <div className="w-full md:w-64 bg-gray-100 p-4">
+          <div className="mb-6 hidden md:block">
             <h2 className="font-semibold text-lg">Filter by Category</h2>
             {/* Add category filters here */}
 
-           <CategoryPicker/>
-         
-            
+            <CategoryPicker />
+          </div>
+          <div className="md:hidden container">
+            <CategoryDropDown />
           </div>
         </div>
 
         {/* Event Cards */}
-        <div className="flex-1 p-5  ">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="flex-1 p-5  mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5 md:mb-0">
             {events.map((event, index) => (
               <EventCard
                 key={index}
