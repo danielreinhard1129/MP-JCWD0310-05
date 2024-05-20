@@ -9,7 +9,7 @@ import { loginAction } from '@/redux/slices/userSlice';
 import { User } from '@/types/user.type';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-interface LoginArgs extends Omit<User, 'id' | 'username' | 'referred' > {
+interface LoginArgs extends Pick<User, 'email' > {
   password: string;
 }
 

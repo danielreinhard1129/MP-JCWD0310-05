@@ -24,7 +24,6 @@ import CreateReviewDialog from './components/CreateReviewDialog';
 // import CreateReviewDialog from '@/components/CreateReviewDialog';
 
 import { Button } from '@/components/ui/button';
-import TransactionDialog from '@/components/TransactionDialog';
 
 
 
@@ -34,10 +33,10 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
     return price === 0
       ? 'Free entrance'
       : new Intl.NumberFormat('id-ID', {
-          style: 'currency',
-          currency: 'IDR',
-          minimumFractionDigits: 0,
-        }).format(price);
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+      }).format(price);
   };
   const { isLoading, event } = useGetEvent(Number(params.id));
   // const { review } = useGetReview(Number(params.id));
@@ -61,9 +60,6 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
 
   const priceString = formattedPrice(event.price);
 
-
-  const priceString = formattedPrice(event.price);
-
   return (
     <main className="">
       <section className="my-4 container">
@@ -81,7 +77,7 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
             {/* EVENT OVERVIEW CARD */}
 
             <Card>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+
 
               <CardHeader>
                 <CardTitle>
@@ -133,19 +129,7 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
                   ticketLimit={event.ticketLimit}
                   formattedPrice={priceString}
                 />
-                <CreateReviewDialog/>
-=======
-            
-            {/* BUY TICKET CARD */}
-            <Card className='mt-4 pt-5'>
-              <CardContent className='flex justify-between items-center'>
-                <h2 className=''>Buy ticket</h2>
-               <TransactionDialog 
-               price={event.price}
-               ticketLimit={event.ticketLimit}
-               formattedPrice={priceString}/>
-                
-
+                <CreateReviewDialog />
               </CardContent>
             </Card>
           </div>
@@ -156,11 +140,11 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
           </div>
 
         </div>
-        </div>
-      </section>
+
+      </section >
 
       <Footer />
-    </main>
+    </main >
   );
 };
 

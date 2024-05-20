@@ -29,7 +29,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
       >
         <CarouselContent>
           {categories.map((category, index) => (
-            <div className="ml-4">
+            <div key={index} className="ml-4">
               <CategoryButton
                 key={index}
                 category={category}

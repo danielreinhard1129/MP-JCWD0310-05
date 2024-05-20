@@ -92,7 +92,7 @@ const DashboardCustomer = () => {
                         <h1 className="font-bold text-xl text-mythemes-scarletgum">Your Tickets</h1>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
                             {transactions.map((transaction, index) => (
-                                <div className='max-w-[350px] w-full h-24 bg-mythemes-scarletgum/20 rounded-lg flex shadow-md'>
+                                <div key={index} className='max-w-[350px] w-full h-24 bg-mythemes-scarletgum/20 rounded-lg flex shadow-md'>
                                     <div className='relative h-full aspect-square'>
                                         <Image
                                             src={appConfig.baseURL + `/assets${transaction?.event?.thumbnail}`}

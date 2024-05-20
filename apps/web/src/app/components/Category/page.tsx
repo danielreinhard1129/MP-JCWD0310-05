@@ -1,3 +1,5 @@
+
+'use client'
 // MainComponent.tsx
 import React, { useState } from 'react';
 import CategoryList from './categoryList';

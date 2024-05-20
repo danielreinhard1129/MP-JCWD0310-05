@@ -1,4 +1,3 @@
-import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -18,7 +17,7 @@ const Page = () => {
       >
         <CarouselContent className="gap-36">
           {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index} className="basis-1/3">
+            <CarouselItem className="basis-1/3" key={index}>
               <Link href='/event-detail'>
                 <div className="w-56 h-64 rounded-lg border bg-card text-card-foreground shadow-sm">
                   <div className="flex flex-col items-center justify-center">
@@ -45,7 +44,7 @@ const Page = () => {
       {/* Desktop view start */}
       <div className="hidden md:flex gap-3">
         {Array.from({ length: 5 }).map((_, index) => (
-          <Link href='/event-detail'>
+          <Link href='/event-detail' key={index}>
             <div className="w-56 h-64 rounded-lg border bg-card text-card-foreground shadow-sm">
               <div className="flex flex-col items-center justify-center">
                 <div className="relative w-full h-32">
