@@ -8,11 +8,6 @@ interface PaginationProps {
   take: number;
   onChangePage: ({ selected }: { selected: number }) => void;
 }
-interface PaginationProps {
-  total: number;
-  take: number;
-  onChangePage: ({ selected }: { selected: number }) => void;
-}
 
 const Pagination: FC<PaginationProps> = ({ onChangePage, total, take }) => {
   return (
