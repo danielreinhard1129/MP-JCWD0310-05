@@ -3,7 +3,6 @@ import { FC } from 'react';
 import ReactPaginate from 'react-paginate';
 
 
-
 interface PaginationProps {
   total: number;
   take: number;
