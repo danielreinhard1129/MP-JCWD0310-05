@@ -3,7 +3,7 @@ import EventCard from '@/components/EventCard';
 import { Footer } from '@/components/Footer';
 import useGetEvents from '@/hooks/api/event/useGetEvents';
 // import useGetCities from '@/hooks/api/event/useGetEventCities';
-import Pagination from '@/components/pagination';
+import Pagination from '@/components/Pagination';
 import { appConfig } from '@/utils/config';
 import { useEffect, useState } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
