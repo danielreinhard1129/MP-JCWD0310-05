@@ -7,6 +7,7 @@ import { Event } from '@/types/event.type';
 
 interface IGetEventsQuery extends IPaginationQueries {
   search?: string;
+  category?: string;
 }
 
 const useGetEvents = (queries: IGetEventsQuery) => {

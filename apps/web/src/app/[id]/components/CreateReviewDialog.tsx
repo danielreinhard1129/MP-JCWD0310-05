@@ -6,6 +6,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { IFormCreateReview } from '@/types/review.type';
 import { useFormik } from 'formik';
 import { validationSchema } from '../validationSchema';
+import Rating from 'react-rating';
 
 const CreateReviewDialog = () => {
   const { createReview } = useCreateReviews();

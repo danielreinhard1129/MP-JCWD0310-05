@@ -1,5 +1,7 @@
 import { createEventService } from '@/services/event/create-event-service';
+// import { getCitiesService } from '@/services/event/get-event-cities-service';
 import { getEventService } from '@/services/event/get-event-service';
+import { getEventsByParamsService } from '@/services/event/get-events-by-params-service';
 import { getEventsService } from '@/services/event/get-events-service';
 import { getEventsByOrganizerService } from '@/services/event/get-eventsbyorganizer-service';
 import { NextFunction, Request, Response } from 'express';
@@ -32,6 +34,16 @@ export class EventController {
     }
   }
 
+  // async getCityController(req: Request, res: Response, next: NextFunction) {
+  //   try {
+  //     const id = req.params.id;
+  //     const result = await getCitiesService(Number(id));
+  //     res.status(200).send(result);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
+
   // async getEventsController(req: Request, res: Response, next: NextFunction) {
   //   try {
   //     const id = req.query.id;
@@ -43,7 +55,11 @@ export class EventController {
   //   }
   // }
 
-  async getEventsByOrganizerController(req: Request, res: Response, next: NextFunction) {
+  async getEventsByOrganizerController(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
       const id = req.query.id;
       const result = await getEventsByOrganizerService(String(id));
@@ -54,6 +70,28 @@ export class EventController {
     }
   }
 
+  // async getEventsByParamsController(
+  //   req: Request,
+  //   res: Response,
+  //   next: NextFunction,
+  // ) {
+  //   try {
+  //     const query = {
+  //       take: parseInt(req.query.take as string) || 8,
+  //       page: parseInt(req.query.page as string) || 1,
+  //       sortBy: parseInt(req.query.sortBy as string) || 'startDate',
+  //       sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
+  //       category: req.query.category as string,
+  //       location: req.query.location as string,
+  //     };
+  //     const result = await getEventsByParamsService(query);
+
+  //     return res.status(200).send(result);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
+
   async getEventsController(req: Request, res: Response, next: NextFunction) {
     try {
       const query = {
@@ -62,6 +100,7 @@ export class EventController {
         sortBy: (req.query.sortBy as string) || 'createdAt',
         sortOrder: (req.query.sortOrder as string) || 'desc',
         search: (req.query.search as string) || '',
+        category: (req.query.category as string) || '',
       };
       const result = await getEventsService(query);
 
@@ -70,5 +109,4 @@ export class EventController {
       next(error);
     }
   }
-
 }

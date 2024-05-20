@@ -11,6 +11,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { IFormCreateEvent } from '@/types/event.type';
 import { useFormik } from 'formik';
 import { validationSchema } from './validationSchema';
+import { Footer } from '@/components/Footer';
 
 // import { DateInput } from '@/components/DateInput';
 const CreateEvent = () => {
@@ -204,6 +205,7 @@ const CreateEvent = () => {
           </div>
         </div>
       </form>
+      <Footer/>
     </main>
   );
 };
