@@ -45,7 +45,7 @@ const Home = () => {
 
       {/* CARDS */}
 
-      {/* <div className=" flex justify-center">
+      <div className=" flex justify-center">
         <Carousel
           opts={{
             align: 'start',
