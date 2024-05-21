@@ -17,14 +17,16 @@ export const rejectTransactionService = async (
             throw new Error('User not Found!')
         }
 
-        // const userPoints = await prisma.user.findFirst({
-        //     where: {id: existingTrasaction.userId},
-        //     select: {points: true}
-        // })         
+        const userPoints = await prisma.user.findFirst({
+            where: {id: existingTrasaction.userId},
+            select: {points: true}
+        })
+
+        const updatePoints = Number(userPoints?.points)+Number(existingTrasaction.userPoints)
 
         await prisma.user.update({
             where: {id: existingTrasaction.userId},
-            data: {points: Number(existingTrasaction.userPoints)}
+            data: {points: updatePoints}
         })      
 
     
