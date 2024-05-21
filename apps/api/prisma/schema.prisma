@@ -18,7 +18,7 @@ model User {
   role          String
   referral      String?
   referred      String?
-  points        Int  @default(0)
+  points        Int           @default(0)
   pointsExpired DateTime?
   reward        Boolean       @default(false)
   createdAt     DateTime      @default(now())
@@ -30,9 +30,8 @@ model User {
   UserVoucher UserVoucher[]
   Voucher     Voucher[]
 
-  Coupon      Coupon[]
-  UserCoupon  UserCoupon[]
-
+  Coupon     Coupon[]
+  UserCoupon UserCoupon[]
 
   @@map("users")
 }
@@ -50,7 +49,6 @@ model Event {
   city     String @default("")
 
   price Int
-
 
   ticketLimit Int           @default(0)
   user        User          @relation(fields: [userId], references: [id])
@@ -81,8 +79,8 @@ model Transaction {
   event        Event             @relation(fields: [eventId], references: [id])
   createdAt    DateTime          @default(now())
   updateAt     DateTime          @updatedAt
-  paymentProof String @default("")
-  invoice String
+  paymentProof String            @default("")
+  invoice      String
   isUseVoucher Boolean
   isPointUse   Boolean
   isUseCoupon  Boolean
@@ -91,10 +89,10 @@ model Transaction {
   userVoucher   UserVoucher? @relation(fields: [userVoucherId], references: [id])
   userVoucherId Int?
   userCouponId  Int?
-  
+  userPoints    Int?
+
   @@map("transactions")
 }
-
 
 enum TransactionStatus {
   PENDING
@@ -103,7 +101,6 @@ enum TransactionStatus {
   CANCELED
   EXPIRED
 }
-
 
 model Review {
   id        Int      @id @default(autoincrement())
@@ -119,11 +116,11 @@ model Review {
 }
 
 model UserVoucher {
-  id          Int           @id @default(autoincrement())
-  userId      Int
-  user        User          @relation(fields: [userId], references: [id])
+  id     Int  @id @default(autoincrement())
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
-  isUse       Boolean
+  isUse Boolean
 
   Transaction Transaction[]
   voucher     Voucher       @relation(fields: [voucherId], references: [id])
@@ -146,7 +143,6 @@ model Voucher {
   userId      Int
   eventId     Int
   UserVoucher UserVoucher[]
-
 
   @@map("vouchers")
 }
@@ -177,5 +173,4 @@ model Coupon {
   UserCoupon  UserCoupon[]
 
   @@map("coupons")
-
 }

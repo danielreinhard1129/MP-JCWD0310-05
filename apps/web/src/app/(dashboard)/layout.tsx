@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarDashboard from "@/components/NavbarDashboard";
 
 
 export default function RootLayout({
@@ -9,7 +9,7 @@ export default function RootLayout({
     return (
         <>
         <div className="fixed z-40 w-full top-0 left-0">
-            <Navbar/>
+            <NavbarDashboard/>
         </div>
             {children}
         </ >

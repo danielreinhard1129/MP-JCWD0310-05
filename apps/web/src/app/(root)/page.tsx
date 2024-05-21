@@ -101,4 +101,4 @@ const Home = () => {
   );
 };
 
-export default AuthGuardCustomer(Home);
+export default Home;

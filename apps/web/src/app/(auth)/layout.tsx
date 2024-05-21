@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import NavbarAuth from "@/components/NavbarAuth";
 
 
 export default function RootLayout({
@@ -9,7 +10,7 @@ export default function RootLayout({
     return (
         <>
         <div className="relative z-40">
-            <Navbar/>
+            <NavbarAuth/>
         </div>
             {children}
         </ >

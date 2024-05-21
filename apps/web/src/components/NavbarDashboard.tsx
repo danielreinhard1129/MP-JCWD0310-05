@@ -16,7 +16,7 @@ import {
   SheetTrigger,
 } from './ui/sheet';
 
-const Navbar = () => {
+const NavbarDashboard = () => {
   const dispatch = useAppDispatch();
   const { id } = useAppSelector((state) => state.user);
 
@@ -41,10 +41,6 @@ const Navbar = () => {
           <Link href="/">
             <h1 className="font-bold text-xl cursor-pointer">Eventura</h1>
           </Link>
-
-          <div className="w-1/2 hidden md:block">
-            <Autocomplete />
-          </div>
 
           {Boolean(id) ? (
             <div className="flex items-center justify-end gap-5">
@@ -239,4 +235,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarDashboard;
