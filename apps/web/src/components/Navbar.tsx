@@ -15,7 +15,7 @@ import {
 } from './ui/sheet';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
-import { BookImage, Home, LogOut, Menu, SquarePen } from 'lucide-react';
+import { BookImage, CircleUser, Home, LogOut, Menu, SquarePen } from 'lucide-react';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -49,32 +49,22 @@ const Navbar = () => {
 
           {Boolean(id) ? (
             <div className="flex items-center justify-end gap-5">
-              <Link href="/event-list" className="hidden md:block">
-                <h3 className="cursor-pointer">Discover</h3>
-              </Link>
-              <Link href="/login" onClick={logout} className="hidden md:block">
-                <h3 className="cursor-pointer">Logout</h3>
-              </Link>
               {user?.role == 'customer' ? (
-                <Link href="/dashboard-customer" className="hidden md:block">
-                  <h3 className="cursor-pointer">Profile</h3>
-                </Link>
-              ) : (
                 <div className="flex items-center gap-5">
-                  <Link href="/dashboard-organizer" className="hidden md:block">
+                  <Link href="/event-list" className="hidden md:block">
+                    <h3 className="cursor-pointer">Discover</h3>
+                  </Link>
+                  <Link href="/login" onClick={logout} className="hidden md:block">
+                    <h3 className="cursor-pointer">Logout</h3>
+                  </Link>
+                  <Link href="/dashboard-customer" className="hidden md:block">
                     <h3 className="cursor-pointer">Profile</h3>
                   </Link>
-                  <Link href="/create-event" className="hidden md:block">
-                    <h3 className="cursor-pointer">Create</h3>
-                  </Link>
-                </div>
-              )}
-              <div className="md:hidden">
+                  <div className="md:hidden">
                 <Sheet>
                   <SheetTrigger asChild>
                     <Menu />
                   </SheetTrigger>
-
                   <SheetContent>
                     <SheetHeader>
                       <SheetTitle>Welcome, {user?.username}</SheetTitle>
@@ -89,10 +79,10 @@ const Navbar = () => {
                           </Link>
                         </li>
                         <li className="flex gap-5 items-center">
-                          <SquarePen />
-                          <Link href="/create-event">
+                          <CircleUser />
+                          <Link href="/dashboard-customer">
                             <p className="text-lg hover:text-[#d60b52]">
-                              Create Event
+                              Profile
                             </p>
                           </Link>
                         </li>
@@ -117,6 +107,62 @@ const Navbar = () => {
                   </SheetContent>
                 </Sheet>
               </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-5">
+                  <Link href="/login" onClick={logout} className="hidden md:block">
+                    <h3 className="cursor-pointer">Logout</h3>
+                  </Link>
+                  <Link href="/dashboard-organizer" className="hidden md:block">
+                    <h3 className="cursor-pointer">Dashboard</h3>
+                  </Link>
+                  <Link href="/create-event" className="hidden md:block">
+                    <h3 className="cursor-pointer">Create</h3>
+                  </Link>
+                  <div className="md:hidden">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Menu />
+                  </SheetTrigger>
+                  <SheetContent>
+                    <SheetHeader>
+                      <SheetTitle>Welcome, {user?.username}</SheetTitle>
+                    </SheetHeader>
+                    <Separator />
+                    <div className="my-4">
+                      <ul className="flex flex-col gap-3">
+                        <li className="flex gap-5 items-center">
+                          <BookImage />
+                          <Link href="/dashboard-organizer">
+                            <p className="text-lg hover:text-[#d60b52]">
+                              Dashboard
+                            </p>
+                          </Link>
+                        </li>
+                        <li className="flex gap-5 items-center">
+                          <SquarePen />
+                          <Link href="/create-event">
+                            <p className="text-lg hover:text-[#d60b52]">
+                              Create Event
+                            </p>
+                          </Link>
+                        </li>
+                        <li className="flex gap-5 items-center">
+                          <LogOut />
+                          <Link href="/login" onClick={logout}>
+                            <p className="text-lg hover:text-[#d60b52]">
+                              LogOut
+                            </p>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </SheetContent>
+                </Sheet>
+              </div>
+                </div>
+              )}
+              
             </div>
           ) : (
             <div className="flex items-center justify-end gap-5">

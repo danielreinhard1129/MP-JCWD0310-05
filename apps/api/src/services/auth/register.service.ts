@@ -17,6 +17,16 @@ export const registerService = async (
 
     const hashedPassword = await hashPassword(password);
 
+    //add username
+    const existingUsername = await prisma.user.findFirst({
+      where: { username: username },
+      select: { id: true },
+    })
+    if (existingUsername) {
+      throw new Error('An Account With That Username Already Exists!')
+    }
+
+
     //add referred
     const existingRefferal = await prisma.user.findFirst({
       where: { referral: referral },
@@ -25,6 +35,10 @@ export const registerService = async (
     if (!existingRefferal && referral != '') {
       throw new Error('Invalid Referral Code!')
     }
+
+    const userCoupon = String(
+      body.username.substring(0, 3) + Math.ceil(Math.random() * 1000),
+    ).toUpperCase();
 
     //update reffered point
 
@@ -40,9 +54,20 @@ export const registerService = async (
       const updateDate = new Date(
         nowDate.setMonth(nowDate.getMonth() + 3),
       )
+
       await prisma.user.update({
         where: { id: existingRefferal.id },
         data: { points: newPoint, pointsExpired: updateDate },
+      });
+
+      await prisma.coupon.create({
+        data: {
+          isUse: false,
+          code: userCoupon,
+          amount: 10000,
+          expiredDate: updateDate,
+          userId: existingRefferal.id,
+        },
       });
 
     }
@@ -58,7 +83,7 @@ export const registerService = async (
           role: role,
           referred: referral,
           // add coupon
-          coupon: true,
+          reward: true,
           password: hashedPassword,
           referral: generateReferralCode,
         },

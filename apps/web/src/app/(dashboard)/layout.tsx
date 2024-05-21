@@ -8,7 +8,7 @@ export default function RootLayout({
 }>) {
     return (
         <>
-        <div className="relative z-40">
+        <div className="fixed z-40 w-full top-0 left-0">
             <Navbar/>
         </div>
             {children}

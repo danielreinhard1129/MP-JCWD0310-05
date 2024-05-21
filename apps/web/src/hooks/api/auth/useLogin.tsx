@@ -30,7 +30,25 @@ const useLogin = () => {
       const { data } = await axiosInstance.post<LoginResponse>('/auth/login',payload);
       dispatch(loginAction(data.data));
       localStorage.setItem('token', data.token);
-      router.replace('/');
+      if (data.data.role === 'organizer') {
+        toast({
+          className: cn(
+            'top-0 right-0 flex fixed md:max-w-[420px] md:top-16 md:right-4 border-mythemes-blue text-mythemes-blue'
+          ),
+          variant: 'default',
+          title: 'Login as Organizer Success',
+        })
+        router.replace('/dashboard-organizer');
+      } else {
+        toast({
+          className: cn(
+            'top-0 right-0 flex fixed md:max-w-[420px] md:top-16 md:right-4 border-mythemes-blue text-mythemes-blue'
+          ),
+          variant: 'default',
+          title: 'Login as Customer Success',
+        })
+        router.replace('/');
+      }
     
     } catch (error) {
       if (error instanceof AxiosError) {

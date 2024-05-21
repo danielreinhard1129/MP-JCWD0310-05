@@ -1,16 +1,12 @@
 
 'use client';
 
-import FormInput from '@/components/FormInput';
-import { Button } from '@/components/ui/button';
 import { AuthCard, AuthCardContent, AuthCardHeader, AuthCardTitle } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useFormik } from 'formik';
+import AuthGuardCustomer from '@/hoc/AuthGuardCustomer';
 import { useRouter } from 'next/navigation';
-import { validationSchema } from './validationSchema';
 
 const Checkout = () => {
-   // const { checkout } = useCheckout();
+    // const { checkout } = useCheckout();
     const router = useRouter();
     // const { values, errors, touched, handleSubmit, handleChange, handleBlur } =
     //     useFormik({
@@ -88,4 +84,4 @@ const Checkout = () => {
 
 }
 
-export default Checkout
+export default AuthGuardCustomer(Checkout) 
