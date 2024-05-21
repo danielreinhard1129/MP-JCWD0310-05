@@ -24,6 +24,7 @@ import CreateReviewDialog from './components/CreateReviewDialog';
 // import CreateReviewDialog from '@/components/CreateReviewDialog';
 
 import { Button } from '@/components/ui/button';
+import AuthGuardCustomer from '@/hoc/AuthGuardCustomer';
 
 const EventDetail = ({ params }: { params: { id: string } }) => {
   const formattedPrice = (price: number): string => {
@@ -143,4 +144,4 @@ const EventDetail = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default EventDetail;
+export default AuthGuardCustomer(EventDetail);

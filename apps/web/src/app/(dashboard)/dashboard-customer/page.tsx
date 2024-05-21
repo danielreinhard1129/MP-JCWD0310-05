@@ -3,6 +3,7 @@
 import {
     Table,
     TableBody,
+    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -13,6 +14,7 @@ import useGetTransaction from "@/hooks/api/transaction/useGetTransactions";
 import useGetUser from "@/hooks/api/user/useGetUser";
 import { useAppSelector } from "@/redux/hooks";
 import { appConfig } from "@/utils/config";
+import { divide } from "cypress/types/lodash";
 import { format } from "date-fns";
 import { CircleUser, TicketPercent } from "lucide-react";
 import Image from "next/image";
@@ -35,11 +37,11 @@ const DashboardCustomer = () => {
 
     const { data: transactions } = useGetTransaction({
         id: id,
-        status: "APPROVED" 
-      });
+        status: "COMPLETE"
+    });
     const { data: transactionsHistory } = useGetTransaction({
         id: id,
-      });
+    });
 
 
     if (!id) {
@@ -88,50 +90,61 @@ const DashboardCustomer = () => {
                     )}
                 </div>
                 <div className="md:col-span-5 min-h-screen p-5">
-                    <div className="flex flex-col gap-4 mx-auto justify-center">
-                        <h1 className="font-bold text-xl text-mythemes-scarletgum">Your Tickets</h1>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
-                            {transactions.map((transaction, index) => (
-                                <div key={index} className='max-w-[350px] w-full h-24 bg-mythemes-scarletgum/20 rounded-lg flex shadow-md'>
-                                    <div className='relative h-full aspect-square'>
-                                        <Image
-                                            src={appConfig.baseURL + `/assets${transaction?.event?.thumbnail}`}
-                                            alt="thumbnail"
-                                            className="object-cover rounded-sm"
-                                            fill
-                                        />
-                                    </div>
-                                    <div className='flex flex-col w-full my-auto text-xs pl-2 pr-2'>
-                                        <p className="text-lg text-mythemes-scarletgum font-semibold">{transaction?.event?.title}</p>
-                                        <p className="text-md text-mythemes-scarletgum">Date : <span className="font-semibold">{format(transaction?.event?.startDate, 'dd MMMM yyyy')}</span></p>
-                                        <p className="text-md text-mythemes-scarletgum">Time : <span className="font-semibold">{format(transaction?.event?.startDate, 'h:mm a')}</span></p>
-                                        <p className="text-sm text-mythemes-darkpink font-semibold">Ticket - {transaction?.quantity}</p>
-                            
-                                    </div>
+                    <div className="mt-14">
+                        <div className="flex flex-col gap-4 mx-auto justify-center">
+                            <h1 className="font-bold text-xl text-mythemes-scarletgum">Your Tickets</h1>
+                            {(transactions.length < 1) ? (
+                                <div className='h-10 rounded-sm flex items-center bg-white'>
+                                    <p className="text-center text-xl mx-auto">You have no any Ticket!</p>
                                 </div>
-                            ))}
-                        </div>
-                        <h1 className="font-bold text-xl text-mythemes-scarletgum">Order History</h1>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Event</TableHead>
-                                    <TableHead>Quantity</TableHead>
-                                    <TableHead>Amount</TableHead>
-                                    <TableHead>Status</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                            {transactionsHistory.map((transactionHistory, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell>{transactionHistory?.event?.title}</TableCell>
-                                        <TableCell>{transactionHistory?.quantity}</TableCell>
-                                        <TableCell>{transactionHistory?.totalPrice}</TableCell>
-                                        <TableCell>{transactionHistory?.status}</TableCell>
+                            ) : (
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
+                                    {transactions.map((transaction, index) => (
+                                        <div key={index} className='max-w-[350px] w-full h-24 bg-mythemes-scarletgum/20 rounded-lg flex shadow-md'>
+                                            <div className='relative h-full aspect-square'>
+                                                <Image
+                                                    src={appConfig.baseURL + `/assets${transaction?.event?.thumbnail}`}
+                                                    alt="thumbnail"
+                                                    className="object-cover rounded-sm"
+                                                    fill
+                                                />
+                                            </div>
+                                            <div className='flex flex-col w-full my-auto text-xs pl-2 pr-2'>
+                                                <p className="text-lg text-mythemes-scarletgum font-semibold">{transaction?.event?.title}</p>
+                                                <p className="text-md text-mythemes-scarletgum">Date : <span className="font-semibold">{format(transaction?.event?.startDate, 'dd MMMM yyyy')}</span></p>
+                                                <p className="text-md text-mythemes-scarletgum">Time : <span className="font-semibold">{format(transaction?.event?.startDate, 'h:mm a')}</span></p>
+                                                <p className="text-sm text-mythemes-darkpink font-semibold">Ticket - {transaction?.quantity}</p>
+
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                            <h1 className="font-bold text-xl text-mythemes-scarletgum">Order History</h1>
+                            <Table>
+                                {(transactionsHistory.length < 1) ? (
+                                    <TableCaption className='text-xl '>You Have No Transaction History Yet.</TableCaption>
+                                ) : ("")}
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Event</TableHead>
+                                        <TableHead>Quantity</TableHead>
+                                        <TableHead>Amount</TableHead>
+                                        <TableHead>Status</TableHead>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                                </TableHeader>
+                                <TableBody>
+                                    {transactionsHistory.map((transactionHistory, index) => (
+                                        <TableRow key={index}>
+                                            <TableCell>{transactionHistory?.event?.title}</TableCell>
+                                            <TableCell>{transactionHistory?.quantity}</TableCell>
+                                            <TableCell>{transactionHistory?.totalPrice}</TableCell>
+                                            <TableCell>{transactionHistory?.status}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </div>
                     </div>
                 </div>
             </section>

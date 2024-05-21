@@ -4,11 +4,12 @@ import { Footer } from '@/components/Footer';
 import useGetEvents from '@/hooks/api/event/useGetEvents';
 
 import CategoryPicker from '@/components/CategoryPicker';
-import Pagination from '@/components/Pagination';
+import Pagination from '@/components/pagination';
 import { appConfig } from '@/utils/config';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CategoryDropDown } from './components/CategoryDropDown';
+import AuthGuardCustomer from '@/hoc/AuthGuardCustomer';
 
 const Page = () => {
   const [page, setPage] = useState<number>(1);
@@ -69,4 +70,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default AuthGuardCustomer(Page);

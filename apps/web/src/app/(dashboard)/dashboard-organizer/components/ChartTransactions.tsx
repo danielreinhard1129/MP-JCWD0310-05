@@ -21,7 +21,7 @@ const ChartTransactions = () => {
   const { id } = useAppSelector((state) => state.user);
   const { data: transaction } = useGetTransactionsByOrganizer({ 
     id: id,
-    status: "APPROVED",
+    status:'COMPLETE' ,
  });
 
   const targetYear = 2024;
@@ -90,7 +90,7 @@ const ChartTransactions = () => {
     ],
   };
 
-  return <Line options={options} data={data} />;
+  return <Line height={"120%"} options={options} data={data} />;
 };
 
 export default ChartTransactions

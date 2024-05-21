@@ -48,7 +48,7 @@ const useCreateEvent = () => {
       await axiosInstance.post<Event>('/events', createEventForm);
 
       // toast success here
-      router.push('/');
+      router.push('/dashboard-organizer/event-list');
     } catch (error) {
       if (error instanceof AxiosError) {
         //TODO: put toast here

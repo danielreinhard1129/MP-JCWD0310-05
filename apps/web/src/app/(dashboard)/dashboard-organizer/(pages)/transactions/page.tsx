@@ -1,6 +1,6 @@
 'use client'
-import Pagination from '@/components/Pagination'
-import { Table, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+
+import { Table, TableCaption, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import AuthGuardOrganizer from '@/hoc/AuthGuardOrganizer'
 import useGetTransactionsByOrganizer from '@/hooks/api/transaction/useGetTransactionsByOrganizer'
@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation'
 import { useState } from 'react'
 import TableTransactionsHistory from '../../components/TableTransactionHistory'
 import TableTransactions from '../../components/TableTransactions'
+import Pagination from '@/components/pagination'
 
 const Transaction = () => {
   const [page, setPage] = useState<number>(1);
@@ -62,6 +63,9 @@ const Transaction = () => {
             />
           </div>
           <Table>
+            {(transactions.length<1)?(
+              <TableCaption className='text-xl '>You Have No Transaction Yet.</TableCaption>
+            ):("")}
             <TableHeader>
               <TableRow>
                 <TableHead>Username</TableHead>
@@ -98,6 +102,9 @@ const Transaction = () => {
             />
           </div>
           <Table>
+          {(transactionsHistory.length<1)?(
+              <TableCaption className='text-xl '>You Have No Transaction History Yet.</TableCaption>
+            ):("")}
             <TableHeader>
               <TableRow>
                 <TableHead>Username</TableHead>

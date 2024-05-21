@@ -1,10 +1,10 @@
 import prisma from "@/prisma"
 import { PaginationQueryParams } from "@/types/pagination.type";
-import { Prisma } from "@prisma/client";
+import { Prisma, TransactionStatus } from "@prisma/client";
 
 interface GetEventsQuery extends PaginationQueryParams {
   id: number;
-  status?: string;
+  status?: TransactionStatus;
 }
 
 export const getTransactionsByOrganozerService = async (query: GetEventsQuery) => {

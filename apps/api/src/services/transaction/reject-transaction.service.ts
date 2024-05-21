@@ -3,23 +3,38 @@ import { Transaction } from '@prisma/client';
 
 export const rejectTransactionService = async (
     body: Pick<Transaction, 'id'>,
-): Promise<Transaction> => {
+) => {
     try {
         const { id } = body;
 
         //add referred
         const existingTrasaction = await prisma.transaction.findFirst({
             where: { id: id },
-            select: { status: true }
+            select: { status: true, userId: true, userPoints: true }
         })
 
-        // if (!existingTrasaction) {
-        //     throw new Error('User not Found!')
-        // }
+        if (!existingTrasaction) {
+            throw new Error('User not Found!')
+        }
+
+        const userPoints = await prisma.user.findFirst({
+            where: {id: existingTrasaction.userId},
+            select: {points: true}
+        })
+
+        const updatePoints = Number(userPoints?.points)+Number(existingTrasaction.userPoints)
+
+        await prisma.user.update({
+            where: {id: existingTrasaction.userId},
+            data: {points: updatePoints}
+        })      
+
+    
         return await prisma.transaction.update({
             where: { id: id },
-            data: { status: 'REJECTED' },
+            data: { status: 'CANCELED' },
         });
+
 
     } catch (error) {
         throw error;

@@ -10,12 +10,24 @@ import { useRouter } from 'next/navigation';
 interface RegisterArgs extends Omit<User, 'id' | 'referral' > {
   password: string;
 }
+
+interface RegisterResponse {
+  message: string;
+  data: User;
+}
+
 const useRegister = () => {
   const router = useRouter();
   const register = async (payload: RegisterArgs) => {
     try {
-
-      await axiosInstance.post('/auth/register', payload);
+      await axiosInstance.post<RegisterResponse>('/auth/register', payload);
+      toast({
+        className: cn(
+          'top-0 right-0 flex fixed md:max-w-[420px] md:top-16 md:right-4 border-mythemes-blue text-mythemes-blue'
+        ),
+        variant: 'default',
+        title: 'Register Success!! Login to Continue',
+      })
       router.push('/login');
     } catch (error) {          
       if (error instanceof AxiosError) {

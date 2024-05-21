@@ -12,6 +12,7 @@ import { IFormCreateEvent } from '@/types/event.type';
 import { useFormik } from 'formik';
 import { validationSchema } from './validationSchema';
 import { Footer } from '@/components/Footer';
+import AuthGuardOrganizer from '@/hoc/AuthGuardOrganizer';
 
 // import { DateInput } from '@/components/DateInput';
 const CreateEvent = () => {
@@ -210,4 +211,4 @@ const CreateEvent = () => {
   );
 };
 
-export default AuthGuard(CreateEvent);
+export default AuthGuardOrganizer(CreateEvent);

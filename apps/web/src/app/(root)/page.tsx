@@ -15,6 +15,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 
+import AuthGuardCustomer from '@/hoc/AuthGuardCustomer';
 import Image from 'next/image';
 
 // import { User } from '@/types/user.type';

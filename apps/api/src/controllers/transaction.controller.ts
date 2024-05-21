@@ -34,6 +34,7 @@ import { acceptTransactionService } from '@/services/transaction/accept-transact
 import { getTransactionByCustomerService } from '@/services/transaction/get-transactionbycustomer.service';
 import { getTransactionsByOrganozerService } from '@/services/transaction/get-transactionbyorganizer.service';
 import { rejectTransactionService } from '@/services/transaction/reject-transaction.service';
+import { TransactionStatus } from '@prisma/client';
 import { NextFunction, Request, Response } from 'express';
 
 export class TransactionController {
@@ -45,7 +46,7 @@ export class TransactionController {
         page: parseInt(req.query.page as string) || 1,
         sortBy: parseInt(req.query.sortBy as string) || 'createdAt',
         sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
-        status: req.query.status as string,
+        status: req.query.status as TransactionStatus,
       };
       const result = await getTransactionByCustomerService(query);
       return res.status(200).send(result);
@@ -62,7 +63,7 @@ export class TransactionController {
         page: parseInt(req.query.page as string) || 1,
         sortBy: parseInt(req.query.sortBy as string) || 'createdAt',
         sortOrder: parseInt(req.query.sortOrder as string) || 'desc',
-        status: req.query.status as string,
+        status: req.query.status as TransactionStatus,
       };
       const result = await getTransactionsByOrganozerService(query);
       return res.status(200).send(result);

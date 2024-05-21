@@ -13,13 +13,13 @@ const Pagination: FC<PaginationProps> = ({ onChangePage, total, take }) => {
     <ReactPaginate
       onPageChange={onChangePage}
       pageCount={Math.ceil(total / take)}
-      nextLabel={<ChevronRight />}
-      previousLabel={<ChevronLeft />}
+      nextLabel={<ChevronRight className='text-mythemes-scarletgum'/>}
+      previousLabel={<ChevronLeft className='text-mythemes-scarletgum'/>}
       pageRangeDisplayed={4}
       renderOnZeroPageCount={null}
-      containerClassName="flex gap-4 w-fit m-4"
-      pageLinkClassName="p-2 rounded-lg"
-      activeLinkClassName="bg-black text-white"
+      containerClassName="flex gap-4 w-fit m-2"
+      pageLinkClassName="py-1 px-2 rounded-lg"
+      activeLinkClassName="bg-mythemes-scarletgum text-white"
     />
   );
 };

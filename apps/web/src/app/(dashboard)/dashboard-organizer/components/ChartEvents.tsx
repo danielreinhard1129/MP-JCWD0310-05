@@ -86,7 +86,7 @@ const ChartEvents = () => {
     ],
   };
 
-  return <Line options={options} data={data} />;
+  return <Line height={"120%"} options={options} data={data} />;
 };
 
 export default ChartEvents;
